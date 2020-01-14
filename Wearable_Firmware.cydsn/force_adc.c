@@ -44,7 +44,7 @@ void adcInit()
     Cy_SAR_StartConvert( SAR, CY_SAR_START_CONVERT_CONTINUOUS );
 }
 
-void getForceValues( uint8_t values[] )
+void getForceValues( uint16_t values[] )
 {
     for( int i = 0; i < 8; i++ )
     {

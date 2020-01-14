@@ -40,7 +40,7 @@ MEMORY CONSTANTS
 VARIABLES
 ------------------------------------------------------------*/
 /* Force data is in a uint8_t array but values are actually uint16_t's */
-uint8_t currentForceData[FORCE_NOTIFICATION_LEN] = {0};
+uint16_t currentForceData[FORCE_NOTIFICATION_LEN/2] = {0};
 bool forceNotificationsEnabled = false;
 
 /*------------------------------------------------------------
@@ -62,9 +62,11 @@ void forceSendNotification(void)
     if( forceNotificationsEnabled )
     {
         getForceValues( currentForceData );
-        for( uint8 i = 0; i < 8; i++ ) {
-            printf("Current Force Data: %d\r\n", currentForceData[i]);
-        }
+        printf("Current Force Data: %d\r\n", currentForceData[0]);
+        
+        //for( uint8 i = 0; i < 8; i++ ) {
+        //    
+        //}
         
         cy_stc_ble_gatt_handle_value_pair_t force_notification = {
             .value.val = currentForceData,

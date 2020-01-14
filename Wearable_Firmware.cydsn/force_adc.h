@@ -42,7 +42,7 @@ VARIABLES
 PROTOTYPES
 ------------------------------------------------------------*/
 void adcInit();
-void getForceValues( uint8_t values[] );
+void getForceValues( uint16_t values[] );
 
 #endif
 /* [] END OF FILE */
