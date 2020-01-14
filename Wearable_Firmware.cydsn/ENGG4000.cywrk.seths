@@ -18,7 +18,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ENGG4000\Wearable_Firmware\TopDesign">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include\arm_common_tables.h">
 <ExpandedNodeIds>
 <v>ENGG4000</v>
 <v>ENGG4000\Wearable_Firmware</v>
@@ -31,7 +31,6 @@
 <v>ENGG4000\Wearable_Firmware\Wearable_Firmware.cydwr\Interrupts</v>
 <v>ENGG4000\Wearable_Firmware\Wearable_Firmware.cydwr\System</v>
 <v>ENGG4000\Wearable_Firmware\Wearable_Firmware.cydwr\Directives</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)</v>
 <v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\ARM GCC Generic</v>
 <v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\ARM GCC Generic\cy8c6xx7_cm0plus.ld</v>
 <v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\ARM IAR Generic</v>
@@ -39,7 +38,6 @@
 <v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\ARM MDK Generic</v>
 <v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\ARM MDK Generic\cy8c6xx7_cm0plus.scat</v>
 <v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Header Files</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files</v>
 <v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files\ARM GCC Generic</v>
 <v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files\ARM GCC Generic\startup_psoc6_01_cm0plus.S</v>
 <v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files\ARM IAR Generic</v>
@@ -48,7 +46,6 @@
 <v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files\ARM MDK Generic\startup_psoc6_01_cm0plus.s</v>
 <v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files\main_cm0p.c</v>
 <v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files\system_psoc6_cm0plus.c</v>
-<v>ENGG4000\Wearable_Firmware\CM4 (Core 1)</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\ARM GCC Generic</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\ARM GCC Generic\cy8c6xx7_cm4_dual.ld</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\ARM IAR Generic</v>
@@ -56,10 +53,13 @@
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\ARM MDK Generic</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\ARM MDK Generic\cy8c6xx7_cm4_dual.scat</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Header Files</v>
+<v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Header Files\BLE</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Header Files\BLE\common_ble.h</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Header Files\BLE\connection_ble.h</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Header Files\BLE\force_ble.h</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Header Files\BLE\imu_ble.h</v>
+<v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Header Files\force_adc.h</v>
+<v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Header Files\imu_i2c.h</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files\ARM GCC Generic</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files\ARM GCC Generic\startup_psoc6_01_cm4.S</v>
@@ -67,13 +67,15 @@
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files\ARM IAR Generic\startup_psoc6_01_cm4.s</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files\ARM MDK Generic\startup_psoc6_01_cm4.s</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files\Source Files</v>
+<v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files\Source Files\BLE</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files\Source Files\BLE\common_ble.c</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files\Source Files\BLE\connection_ble.c</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files\Source Files\BLE\force_ble.c</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files\Source Files\BLE\imu_ble.c</v>
+<v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files\Source Files\force_adc.c</v>
+<v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files\Source Files\imu_i2c.c</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files\main_cm4.c</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Source Files\system_psoc6_cm4.c</v>
-<v>ENGG4000\Wearable_Firmware\Shared Files</v>
 <v>ENGG4000\Wearable_Firmware\Shared Files\cy_ble_config.h</v>
 <v>ENGG4000\Wearable_Firmware\Shared Files\cyapicallbacks.h</v>
 <v>ENGG4000\Wearable_Firmware\Shared Files\stdio_user.c</v>
@@ -81,6 +83,11 @@
 <v>ENGG4000\Wearable_Firmware\Shared Files\system_psoc6.h</v>
 <v>ENGG4000\Wearable_Firmware\Generated_Source</v>
 <v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\devices\psoc6</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\devices\psoc6\include</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>ENGG4000</v>
@@ -95,30 +102,30 @@
 <v>ENGG4000\Wearable_Firmware\Wearable_Firmware.cydwr\System</v>
 <v>ENGG4000\Wearable_Firmware\Wearable_Firmware.cydwr\Directives</v>
 <v>ENGG4000\Wearable_Firmware\CM0p (Core 0)</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\ARM GCC Generic</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\ARM GCC Generic\cy8c6xx7_cm0plus.ld</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\ARM IAR Generic</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\ARM IAR Generic\cy8c6xx7_cm0plus.icf</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\ARM MDK Generic</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\ARM MDK Generic\cy8c6xx7_cm0plus.scat</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Header Files</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files\ARM GCC Generic</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files\ARM GCC Generic\startup_psoc6_01_cm0plus.S</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files\ARM IAR Generic</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files\ARM IAR Generic\startup_psoc6_01_cm0plus.s</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files\ARM MDK Generic</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files\ARM MDK Generic\startup_psoc6_01_cm0plus.s</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files\main_cm0p.c</v>
-<v>ENGG4000\Wearable_Firmware\CM0p (Core 0)\Source Files\system_psoc6_cm0plus.c</v>
 <v>ENGG4000\Wearable_Firmware\CM4 (Core 1)</v>
-<v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\ARM GCC Generic</v>
-<v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\ARM GCC Generic\cy8c6xx7_cm4_dual.ld</v>
-<v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\ARM IAR Generic</v>
-<v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\ARM IAR Generic\cy8c6xx7_cm4_dual.icf</v>
-<v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\ARM MDK Generic</v>
-<v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\ARM MDK Generic\cy8c6xx7_cm4_dual.scat</v>
-<v>ENGG4000\Wearable_Firmware\CM4 (Core 1)\Header Files</v>
+<v>ENGG4000\Wearable_Firmware\Shared Files</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include\arm_common_tables.h</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include\arm_const_structs.h</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include\arm_math.h</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include\cmsis_armcc.h</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include\cmsis_armclang.h</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include\cmsis_compiler.h</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include\cmsis_gcc.h</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include\cmsis_iccarm.h</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include\cmsis_version.h</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include\core_cm0plus.h</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include\core_cm4.h</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\cmsis\include\mpu_armv7.h</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\devices</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\drivers</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\middleware</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\pdl\utilities</v>
+<v>ENGG4000\Wearable_Firmware\Generated_Source\PSoC6\ADC</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -143,7 +150,12 @@
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files</v>
+<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\ADC.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\ADC_INIT.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\ADC_INT.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\ADC_PM.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\BLE.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\BLE_bas_config.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\BLE_config.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\BLE_custom_config.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ble.lst</v>
@@ -197,6 +209,7 @@
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_lvd.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_profile.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_prot.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_sar.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_scb_common.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_scb_ezi2c.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_scb_i2c.lst</v>
@@ -217,6 +230,7 @@
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cyfitter_sysint_cfg.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\I2C_1.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\main_cm0p.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\PWM_GREEN_BLINK.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\PWM_RED_BLINK.lst</v>
@@ -233,7 +247,12 @@
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files</v>
+<v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\ADC.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\ADC_INIT.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\ADC_INT.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\ADC_PM.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\BLE.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\BLE_bas_config.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\BLE_config.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\BLE_custom_config.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\common_ble.lst</v>
@@ -289,6 +308,7 @@
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\cy_lvd.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\cy_profile.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\cy_prot.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\cy_sar.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\cy_scb_common.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\cy_scb_ezi2c.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\cy_scb_i2c.lst</v>
@@ -308,8 +328,11 @@
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\cy_wdt.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\cyfitter_sysint_cfg.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\force_adc.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\force_ble.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\I2C_1.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\imu_ble.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\imu_i2c.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\main_cm4.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\PWM_GREEN_BLINK.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM4\ARM_GCC_541\Debug\Listing Files\PWM_RED_BLINK.lst</v>
@@ -333,7 +356,12 @@
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files</v>
+<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\ADC.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\ADC_INIT.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\ADC_INT.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\ADC_PM.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\BLE.lst</v>
+<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\BLE_bas_config.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\BLE_config.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\BLE_custom_config.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ble.lst</v>
@@ -358,11 +386,6 @@
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ble_gatt.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ble_gls.lst</v>
 <v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ble_hal_int.lst</v>
-<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ble_hal_pvt.lst</v>
-<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ble_hids.lst</v>
-<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ble_hps.lst</v>
-<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ble_hrs.lst</v>
-<v>ENGG4000\Wearable_Firmware\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ble_hts.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -381,6 +404,8 @@
 <v>ENGG4000\Wearable_Firmware\BLE_PDL_v2_0.pdf</v>
 <v>ENGG4000\Wearable_Firmware\GPIO_PDL_v1_0</v>
 <v>ENGG4000\Wearable_Firmware\GPIO_PDL_v1_0\GPIO_PDL_v1_0.pdf</v>
+<v>ENGG4000\Wearable_Firmware\Scan_ADC_P6_v2_10.pdf</v>
+<v>ENGG4000\Wearable_Firmware\SCB_I2C_PDL_v2_0.pdf</v>
 <v>ENGG4000\Wearable_Firmware\SCB_UART_PDL_v2_0.pdf</v>
 <v>ENGG4000\Wearable_Firmware\SysClk_PDL_v1_0.pdf</v>
 <v>ENGG4000\Wearable_Firmware\SysInt_PDL_v1_0.pdf</v>
@@ -398,6 +423,8 @@
 <v>ENGG4000\Wearable_Firmware\BLE_PDL_v2_0.pdf</v>
 <v>ENGG4000\Wearable_Firmware\GPIO_PDL_v1_0</v>
 <v>ENGG4000\Wearable_Firmware\GPIO_PDL_v1_0\GPIO_PDL_v1_0.pdf</v>
+<v>ENGG4000\Wearable_Firmware\Scan_ADC_P6_v2_10.pdf</v>
+<v>ENGG4000\Wearable_Firmware\SCB_I2C_PDL_v2_0.pdf</v>
 <v>ENGG4000\Wearable_Firmware\SCB_UART_PDL_v2_0.pdf</v>
 <v>ENGG4000\Wearable_Firmware\SysClk_PDL_v1_0.pdf</v>
 <v>ENGG4000\Wearable_Firmware\SysInt_PDL_v1_0.pdf</v>
@@ -414,6 +441,10 @@
 <Unloaded />
 <OpenDocs>
 <name v=".\TopDesign\TopDesign.cysch" />
+<name v=".\Wearable_Firmware.cydwr" />
+<name v=".\force_ble.c" />
+<name v=".\force_adc.c" />
+<name v=".\force_adc.h" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -421,7 +452,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1027, 495" SelectedTabbedMdiWindow="0d2994a2-88bf-4c66-8479-8dc95550617a"><DocumentWindow Key="C:\Projects\ENGG4000\software\firmware\ENGG4000\Wearable_Firmware.cydsn\TopDesign\TopDesign.cysch" Guid="0d2994a2-88bf-4c66-8479-8dc95550617a" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1281, 495" SelectedTabbedMdiWindow="9a052e67-e9fb-4839-838d-1476dc251c1c"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="6ffe9db7-5c0c-4c2f-a375-720a4475268e" /><DocumentWindow Key="C:\Projects\ENGG4000\software\firmware\ENGG4000_Firmware\Wearable_Firmware.cydsn\TopDesign\TopDesign.cysch" Guid="70da86d0-326f-43f3-9265-af5444c4a7c9" /><DocumentWindow Key="C:\Projects\ENGG4000\software\firmware\ENGG4000_Firmware\Wearable_Firmware.cydsn\Wearable_Firmware.cydwr" Guid="9a052e67-e9fb-4839-838d-1476dc251c1c" /><DocumentWindow Key="C:\Projects\ENGG4000\software\firmware\ENGG4000_Firmware\Wearable_Firmware.cydsn\force_ble.c" Guid="b7dc1bc8-c516-47f2-8755-a997a58cb417" /><DocumentWindow Key="C:\Projects\ENGG4000\software\firmware\ENGG4000_Firmware\Wearable_Firmware.cydsn\force_adc.c" Guid="db05cef4-fce2-4475-8b92-14a1cce61bb0" /><DocumentWindow Key="C:\Projects\ENGG4000\software\firmware\ENGG4000_Firmware\Wearable_Firmware.cydsn\force_adc.h" Guid="2b848adf-2783-40fe-a82e-356ca0201866" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

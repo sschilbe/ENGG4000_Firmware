@@ -15,13 +15,14 @@ INCLUDES
 ------------------------------------------------------------*/
 #include "connection_ble.h"
 #include "force_ble.h"
+#include "force_adc.h"
 #include "project.h"
 #include <stdio.h>
 
 /*------------------------------------------------------------
 LITERAL CONSTANTS
 ------------------------------------------------------------*/
-#define FORCE_NOTIFICATION_LEN  (20u)
+#define FORCE_NOTIFICATION_LEN  (16u)
 
 /*------------------------------------------------------------
 MACROS
@@ -38,6 +39,7 @@ MEMORY CONSTANTS
 /*------------------------------------------------------------
 VARIABLES
 ------------------------------------------------------------*/
+/* Force data is in a uint8_t array but values are actually uint16_t's */
 uint8_t currentForceData[FORCE_NOTIFICATION_LEN] = {0};
 bool forceNotificationsEnabled = false;
 
@@ -49,13 +51,21 @@ void bleForceInit(void)
     /* No initialization required currently */
 }
 
+void updateForceData( uint8_t newData[] )
+{
+    memcpy( currentForceData, newData, sizeof( uint8_t ) * FORCE_NOTIFICATION_LEN );   
+}
+
 void forceSendNotification(void)
 {
     cy_stc_ble_conn_handle_t connHandle = getConnection();
     if( forceNotificationsEnabled )
     {
-        printf("Sending Force Notification\r\n");
-        currentForceData[0]++;
+        getForceValues( currentForceData );
+        for( uint8 i = 0; i < 8; i++ ) {
+            printf("Current Force Data: %d\r\n", currentForceData[i]);
+        }
+        
         cy_stc_ble_gatt_handle_value_pair_t force_notification = {
             .value.val = currentForceData,
             .value.len = FORCE_NOTIFICATION_LEN,
@@ -97,8 +107,13 @@ void bleForceCallback(uint32_t event, void *eventParam)
             }
             
             Cy_BLE_GATTS_WriteRsp(writeReqParameter->connHandle);
+            break;
+        case CY_BLE_EVT_GAP_DEVICE_DISCONNECTED:
+            forceNotificationsEnabled = false;
+            break;
+            
         default:
-            printf("UNHANDLED EVENT FOR FORCE SERVICE");
+            printf("UNHANDLED EVENT FOR FORCE SERVICE, event id: %d\r\n", event);
             break;
     }
 }

@@ -15,6 +15,12 @@
 /* BLE interface */
 #include "common_ble.h"
 
+/* ADC interface */
+#include "force_adc.h"
+
+/* IMU interface */
+#include "imu_i2c.h"
+
 // Starts the system
 int main(void)
 {
@@ -37,14 +43,14 @@ int main(void)
     setvbuf( stdout, NULL, _IONBF, 0 ); 
     printf("System Started\r\n");
 
-    PWM_RED_BLINK_Start();
-
     /* Trigger a software start on the counter instance. This is required when 
      * no other hardware input signal is connected to the component to act as
      * a trigger source. 
      */
     Cy_TCPWM_TriggerStart(Timer_HW, Timer_CNT_MASK); 
 
+    adcInit();
+    i2cInit();
     BleInit();
     
     for(;;)
@@ -52,7 +58,7 @@ int main(void)
         Cy_BLE_ProcessEvents();
         
         /* Entering into the Deep Sleep */
-        Cy_SysPm_DeepSleep(CY_SYSPM_WAIT_FOR_INTERRUPT);
+        //Cy_SysPm_DeepSleep(CY_SYSPM_WAIT_FOR_INTERRUPT);
     }
 }
 

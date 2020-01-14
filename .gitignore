@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Cypresss specific files
+/Wearable_Firmware.cydsn/codegentemp/
+/Wearable_Firmware.cydsn/CortexM0p/
+/Wearable_Firmware.cydsn/CortexM4/
+*.log

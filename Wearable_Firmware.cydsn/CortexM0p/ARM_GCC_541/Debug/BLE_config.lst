@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\seths\AppData\Local\Temp\ccfSJPeh.s 			page 1
+ARM GAS  C:\Users\seths\AppData\Local\Temp\cccXPfpU.s 			page 1
 
 
    1              		.syntax unified
@@ -27,7 +27,7 @@ ARM GAS  C:\Users\seths\AppData\Local\Temp\ccfSJPeh.s 			page 1
   24 0006 00000000 		.4byte	.Ldebug_abbrev0
   25 000a 04       		.byte	0x4
   26 000b 01       		.uleb128 0x1
-  27 000c 0E010000 		.4byte	.LASF14
+  27 000c 17010000 		.4byte	.LASF14
   28 0010 0C       		.byte	0xc
   29 0011 66000000 		.4byte	.LASF15
   30 0015 B0000000 		.4byte	.LASF16
@@ -35,7 +35,7 @@ ARM GAS  C:\Users\seths\AppData\Local\Temp\ccfSJPeh.s 			page 1
   32 001d 02       		.uleb128 0x2
   33 001e 02       		.byte	0x2
   34 001f 05       		.byte	0x5
-  35 0020 04010000 		.4byte	.LASF0
+  35 0020 0D010000 		.4byte	.LASF0
   36 0024 02       		.uleb128 0x2
   37 0025 01       		.byte	0x1
   38 0026 08       		.byte	0x8
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\seths\AppData\Local\Temp\ccfSJPeh.s 			page 1
   55 0043 1B000000 		.4byte	.LASF5
   56 0047 02       		.uleb128 0x2
   57 0048 08       		.byte	0x8
-ARM GAS  C:\Users\seths\AppData\Local\Temp\ccfSJPeh.s 			page 2
+ARM GAS  C:\Users\seths\AppData\Local\Temp\cccXPfpU.s 			page 2
 
 
   58 0049 05       		.byte	0x5
@@ -78,11 +78,11 @@ ARM GAS  C:\Users\seths\AppData\Local\Temp\ccfSJPeh.s 			page 1
   72 0063 02       		.uleb128 0x2
   73 0064 04       		.byte	0x4
   74 0065 07       		.byte	0x7
-  75 0066 A0010000 		.4byte	.LASF9
+  75 0066 A9010000 		.4byte	.LASF9
   76 006a 02       		.uleb128 0x2
   77 006b 08       		.byte	0x8
   78 006c 04       		.byte	0x4
-  79 006d F8000000 		.4byte	.LASF10
+  79 006d 01010000 		.4byte	.LASF10
   80 0071 02       		.uleb128 0x2
   81 0072 01       		.byte	0x1
   82 0073 08       		.byte	0x8
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\seths\AppData\Local\Temp\ccfSJPeh.s 			page 1
  112 0011 00       		.byte	0
  113 0012 0B       		.uleb128 0xb
  114 0013 0B       		.uleb128 0xb
-ARM GAS  C:\Users\seths\AppData\Local\Temp\ccfSJPeh.s 			page 3
+ARM GAS  C:\Users\seths\AppData\Local\Temp\cccXPfpU.s 			page 3
 
 
  115 0014 3E       		.uleb128 0x3e
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\seths\AppData\Local\Temp\ccfSJPeh.s 			page 1
  153      6720756E 
  153      7369676E 
  153      65642069 
-ARM GAS  C:\Users\seths\AppData\Local\Temp\ccfSJPeh.s 			page 4
+ARM GAS  C:\Users\seths\AppData\Local\Temp\cccXPfpU.s 			page 4
 
 
  154              	.LASF12:
@@ -221,40 +221,40 @@ ARM GAS  C:\Users\seths\AppData\Local\Temp\ccfSJPeh.s 			page 1
  171      6374735C 
  171      454E4747 
  171      34303030 
- 172 00de 305C5765 		.ascii	"0\\Wearable_Firmware.cydsn\000"
- 172      61726162 
- 172      6C655F46 
- 172      69726D77 
- 172      6172652E 
+ 172 00de 305F4669 		.ascii	"0_Firmware\\Wearable_Firmware.cydsn\000"
+ 172      726D7761 
+ 172      72655C57 
+ 172      65617261 
+ 172      626C655F 
  173              	.LASF10:
- 174 00f8 6C6F6E67 		.ascii	"long double\000"
+ 174 0101 6C6F6E67 		.ascii	"long double\000"
  174      20646F75 
  174      626C6500 
  175              	.LASF0:
- 176 0104 73686F72 		.ascii	"short int\000"
+ 176 010d 73686F72 		.ascii	"short int\000"
  176      7420696E 
  176      7400
  177              	.LASF14:
- 178 010e 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 178 0117 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
  178      43313120 
  178      352E342E 
-ARM GAS  C:\Users\seths\AppData\Local\Temp\ccfSJPeh.s 			page 5
+ARM GAS  C:\Users\seths\AppData\Local\Temp\cccXPfpU.s 			page 5
 
 
  178      31203230 
  178      31363036 
- 179 0141 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0plus -mthumb -"
+ 179 014a 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0plus -mthumb -"
  179      20726576 
  179      6973696F 
  179      6E203233 
  179      37373135 
- 180 0174 67202D4F 		.ascii	"g -Og -ffunction-sections -ffat-lto-objects\000"
+ 180 017d 67202D4F 		.ascii	"g -Og -ffunction-sections -ffat-lto-objects\000"
  180      67202D66 
  180      66756E63 
  180      74696F6E 
  180      2D736563 
  181              	.LASF9:
- 182 01a0 73697A65 		.ascii	"sizetype\000"
+ 182 01a9 73697A65 		.ascii	"sizetype\000"
  182      74797065 
  182      00
  183              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

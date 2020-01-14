@@ -1,5 +1,5 @@
 # Wearable_Firmware
-# 2019-12-02 15:32:26Z
+# 2020-01-14 21:08:55Z
 
 dont_use_location p4usbcell -1 -1 0
 dont_use_location USB -1 -1 0
@@ -16,6 +16,16 @@ set_io "\UART_1:tx(0)\" iocell 5 1
 set_io "\UART_1:rx(0)\" iocell 5 0
 set_io "GREEN(0)" iocell 9 6
 set_io "RED(0)" iocell 9 4
+set_io "Pin_1(0)" iocell 10 0
+set_io "Pin_2(0)" iocell 10 1
+set_io "Pin_3(0)" iocell 10 2
+set_io "Pin_4(0)" iocell 10 3
+set_io "Pin_5(0)" iocell 10 4
+set_io "Pin_6(0)" iocell 10 5
+set_io "Pin_7(0)" iocell 10 6
+set_io "Pin_8(0)" iocell 9 3
+set_io "\I2C_1:scl(0)\" iocell 6 4
+set_io "\I2C_1:sda(0)\" iocell 6 5
 set_location "\BLE_1:cy_mxs40_ble\" BLE -1 -1 0
 set_location "\BLE_1:bless_isr\" interrupt -1 -1 24
 set_location "\UART_1:SCB_IRQ\" interrupt -1 -1 46
@@ -24,3 +34,7 @@ set_location "\PWM_GREEN_BLINK:TCPWM\" TCPWM -1 -1 0
 set_location "\PWM_RED_BLINK:TCPWM\" TCPWM -1 -1 7
 set_location "isrTimer" interrupt -1 -1 91
 set_location "\Timer:TCPWM\" TCPWM -1 -1 1
+set_location "\ADC:IRQ\" interrupt -1 -1 138
+set_location "\ADC:SAR\" SARADC -1 -1 0
+set_location "\I2C_1:SCB\" SCB -1 -1 6
+set_location "\I2C_1:SCB_IRQ\" interrupt -1 -1 47

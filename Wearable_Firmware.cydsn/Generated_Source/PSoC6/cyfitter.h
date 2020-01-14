@@ -20,9 +20,46 @@
 #include "cyfitter_gpio.h"
 #include "cyfitter_sysint.h"
 
+/* ADC */
+#define ADC_intSarClock__DIV_IDX 2
+#define ADC_intSarClock__DIV_NUM 2
+#define ADC_intSarClock__DIV_TYPE CY_SYSCLK_DIV_8_BIT
+#define ADC_SAR__HW SAR
+#define ADC_SAR__IDX 0
+#define ADC_SAR__TR_SAR_IN TRIG6_OUT_PASS_TR_SAR_IN
+#define ADC_SARMUX__CH_0_PIN 0
+#define ADC_SARMUX__CH_0_PORT 0
+#define ADC_SARMUX__CH_1_PIN 1
+#define ADC_SARMUX__CH_1_PORT 0
+#define ADC_SARMUX__CH_2_PIN 2
+#define ADC_SARMUX__CH_2_PORT 0
+#define ADC_SARMUX__CH_3_PIN 3
+#define ADC_SARMUX__CH_3_PORT 0
+#define ADC_SARMUX__CH_4_PIN 4
+#define ADC_SARMUX__CH_4_PORT 0
+#define ADC_SARMUX__CH_5_PIN 5
+#define ADC_SARMUX__CH_5_PORT 0
+#define ADC_SARMUX__CH_6_PIN 6
+#define ADC_SARMUX__CH_6_PORT 0
+#define ADC_SARMUX__CH_7_PIN 3
+#define ADC_SARMUX__CH_7_PORT 1
+#define ADC_SARMUX__HW SAR
+#define ADC_SARMUX__VNEG0 0
+
 /* BLE_1 */
 #define BLE_1_cy_mxs40_ble__HW BLE
 #define BLE_1_cy_mxs40_ble__IDX 0
+
+/* I2C_1 */
+#define I2C_1_SCB__HW SCB6
+#define I2C_1_SCB__IDX 6
+#define I2C_1_SCB__SS0_POSITION 0u
+#define I2C_1_SCB__SS1_POSITION 1u
+#define I2C_1_SCB__SS2_POSITION 2u
+#define I2C_1_SCB__SS3_POSITION 3u
+#define I2C_1_SCBCLK__DIV_IDX 0
+#define I2C_1_SCBCLK__DIV_NUM 0
+#define I2C_1_SCBCLK__DIV_TYPE CY_SYSCLK_DIV_8_BIT
 
 /* Timer */
 #define Timer_TCPWM__CNT_HW TCPWM0_CNT1
@@ -37,8 +74,8 @@
 #define UART_1_SCB__SS1_POSITION 1u
 #define UART_1_SCB__SS2_POSITION 2u
 #define UART_1_SCB__SS3_POSITION 3u
-#define UART_1_SCBCLK__DIV_IDX 0
-#define UART_1_SCBCLK__DIV_NUM 0
+#define UART_1_SCBCLK__DIV_IDX 1
+#define UART_1_SCBCLK__DIV_NUM 1
 #define UART_1_SCBCLK__DIV_TYPE CY_SYSCLK_DIV_8_BIT
 
 /* Clock_1 */

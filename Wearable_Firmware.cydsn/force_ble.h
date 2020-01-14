@@ -53,6 +53,7 @@ PROTOTYPES
 void bleForceInit(void);
 void bleForceCallback(uint32_t event, void *eventParam);
 void forceSendNotification(void);
+void updateForceData( uint8_t newData[] );
 
 #endif /* FORCE_BLE_H */
 

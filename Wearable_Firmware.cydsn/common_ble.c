@@ -73,6 +73,7 @@ void BleInit(void)
 void BleCallback(uint32_t event, void *eventParam)
 {
     cy_ble_gatt_db_attr_handle_t attribute_handle;
+    cy_stc_ble_gap_conn_param_updated_in_controller_t* connection_update_event;
     
     /* Take an action based on the current event */
     switch (event)
@@ -80,7 +81,10 @@ void BleCallback(uint32_t event, void *eventParam)
         /* This event is received when the BLE stack is Started */
         case CY_BLE_EVT_STACK_ON:
         case CY_BLE_EVT_GAP_DEVICE_DISCONNECTED:
-            PWM_RED_BLINK_Start();    
+            bleImuCallback( event, eventParam );
+            bleForceCallback( event, eventParam );
+            
+            PWM_RED_BLINK_Start();
             Cy_BLE_GAPP_StartAdvertisement(CY_BLE_ADVERTISING_FAST, CY_BLE_PERIPHERAL_CONFIGURATION_0_INDEX);
             Cy_TCPWM_TriggerReloadOrIndex(PWM_GREEN_BLINK_HW,PWM_GREEN_BLINK_CNT_NUM);
             Cy_TCPWM_PWM_Disable(PWM_GREEN_BLINK_HW,PWM_GREEN_BLINK_CNT_NUM);
@@ -93,6 +97,11 @@ void BleCallback(uint32_t event, void *eventParam)
             
             // Save connection handle
             setConnection( *(cy_stc_ble_conn_handle_t*)eventParam );
+            break;
+        
+        case CY_BLE_EVT_GAP_CONNECTION_UPDATE_COMPLETE:
+            connection_update_event = (cy_stc_ble_gap_conn_param_updated_in_controller_t *)eventParam;
+            printf("Connection updated, interval: %x\r\n", connection_update_event->connIntv);
             break;
         
         case CY_BLE_EVT_GATTS_WRITE_REQ:

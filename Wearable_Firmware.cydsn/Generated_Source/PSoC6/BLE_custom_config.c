@@ -29,28 +29,17 @@ static const cy_stc_ble_customs_t cy_ble_customs[0x02u] = {
 
     /* IMU service */
     {
-        0x0010u, /* Handle of the IMU service */ 
+        0x0015u, /* Handle of the IMU service */ 
         {
 
-            /* Acceleration characteristic */
+            /* Acceleration/Gyroscope characteristic */
             {
-                0x0012u, /* Handle of the Acceleration characteristic */ 
+                0x0017u, /* Handle of the Acceleration/Gyroscope characteristic */ 
                 
                 /* Array of Descriptors handles */
                 {
-                    0x0013u, /* Handle of the Characteristic User Description descriptor */ 
-                    0x0014u, /* Handle of the Client Characteristic Configuration descriptor */ 
-                }, 
-            },
-
-            /* Gyroscope characteristic */
-            {
-                0x0016u, /* Handle of the Gyroscope characteristic */ 
-                
-                /* Array of Descriptors handles */
-                {
-                    0x0017u, /* Handle of the Characteristic User Description descriptor */ 
-                    0x0018u, /* Handle of the Client Characteristic Configuration descriptor */ 
+                    0x0018u, /* Handle of the Characteristic User Description descriptor */ 
+                    0x0019u, /* Handle of the Client Characteristic Configuration descriptor */ 
                 }, 
             },
         }, 
@@ -58,26 +47,17 @@ static const cy_stc_ble_customs_t cy_ble_customs[0x02u] = {
 
     /* FSR service */
     {
-        0x0019u, /* Handle of the FSR service */ 
+        0x001Au, /* Handle of the FSR service */ 
         {
 
             /* Force characteristic */
             {
-                0x001Bu, /* Handle of the Force characteristic */ 
+                0x001Cu, /* Handle of the Force characteristic */ 
                 
                 /* Array of Descriptors handles */
                 {
-                    0x001Cu, /* Handle of the Client Characteristic Configuration descriptor */ 
-                    0x001Du, /* Handle of the Characteristic User Description descriptor */ 
-                }, 
-            },
-            {
-                CY_BLE_GATT_INVALID_ATTR_HANDLE_VALUE, 
-                
-                /* Array of Descriptors handles */
-                {
-                    CY_BLE_GATT_INVALID_ATTR_HANDLE_VALUE, 
-                    CY_BLE_GATT_INVALID_ATTR_HANDLE_VALUE, 
+                    0x001Du, /* Handle of the Client Characteristic Configuration descriptor */ 
+                    0x001Eu, /* Handle of the Characteristic User Description descriptor */ 
                 }, 
             },
         }, 

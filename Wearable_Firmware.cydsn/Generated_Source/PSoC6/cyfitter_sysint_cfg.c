@@ -38,10 +38,22 @@
         .intrPriority = UART_1_SCB_IRQ__INTC_CORTEXM4_PRIORITY
     };
 
+    /* I2C_1_SCB_IRQ */
+    const cy_stc_sysint_t I2C_1_SCB_IRQ_cfg = {
+        .intrSrc = (IRQn_Type)I2C_1_SCB_IRQ__INTC_NUMBER,
+        .intrPriority = I2C_1_SCB_IRQ__INTC_CORTEXM4_PRIORITY
+    };
+
     /* isrTimer */
     const cy_stc_sysint_t isrTimer_cfg = {
         .intrSrc = (IRQn_Type)isrTimer__INTC_NUMBER,
         .intrPriority = isrTimer__INTC_CORTEXM4_PRIORITY
+    };
+
+    /* ADC_IRQ */
+    const cy_stc_sysint_t ADC_IRQ_cfg = {
+        .intrSrc = (IRQn_Type)ADC_IRQ__INTC_NUMBER,
+        .intrPriority = ADC_IRQ__INTC_CORTEXM4_PRIORITY
     };
 
 #endif /* ((__CORTEX_M == 4) && (CY_CORE_ID == 0)) */
