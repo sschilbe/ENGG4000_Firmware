@@ -5,3 +5,10 @@ Wearable_Firmware: TopDesign.cysch
 	ADC [v2.10] to [v3.10]
 
 
+Last Modified Date & Time: 01/23/2020 15:59:32
+
+Wearable_Firmware: TopDesign.cysch
+	BLE_1 [v2.0] to [v2.20]
+	ADC [v2.10] to [v3.10]
+
+

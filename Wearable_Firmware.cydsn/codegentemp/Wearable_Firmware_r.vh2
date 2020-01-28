@@ -1,5 +1,5 @@
 -- Project:   Wearable_Firmware
--- Generated: 01/14/2020 17:08:54
+-- Generated: 01/23/2020 16:26:50
 -- PSoC Creator  4.2
 
 ENTITY Wearable_Firmware IS
@@ -55,12 +55,6 @@ ARCHITECTURE __DEFAULT__ OF Wearable_Firmware IS
     SIGNAL Net_162 : bit;
     SIGNAL Net_169 : bit;
     SIGNAL Net_2 : bit;
-    SIGNAL Net_23_ff11 : bit;
-    ATTRIBUTE global_signal OF Net_23_ff11 : SIGNAL IS true;
-    SIGNAL Net_23_ff12 : bit;
-    ATTRIBUTE global_signal OF Net_23_ff12 : SIGNAL IS true;
-    SIGNAL Net_23_ff13 : bit;
-    ATTRIBUTE global_signal OF Net_23_ff13 : SIGNAL IS true;
     SIGNAL Net_3 : bit;
     SIGNAL Net_352 : bit;
     SIGNAL Net_353 : bit;
@@ -85,6 +79,12 @@ ARCHITECTURE __DEFAULT__ OF Wearable_Firmware IS
     SIGNAL Net_364 : bit;
     SIGNAL Net_365 : bit;
     SIGNAL Net_366 : bit;
+    SIGNAL Net_368_ff11 : bit;
+    ATTRIBUTE global_signal OF Net_368_ff11 : SIGNAL IS true;
+    SIGNAL Net_368_ff12 : bit;
+    ATTRIBUTE global_signal OF Net_368_ff12 : SIGNAL IS true;
+    SIGNAL Net_368_ff13 : bit;
+    ATTRIBUTE global_signal OF Net_368_ff13 : SIGNAL IS true;
     SIGNAL Net_80 : bit;
     SIGNAL Net_81 : bit;
     SIGNAL Net_82 : bit;
@@ -640,12 +640,12 @@ BEGIN
             ff_div_0 => open,
             ff_div_1 => open,
             ff_div_49 => \ADC:Net_428_ff49\,
-            ff_div_11 => Net_23_ff11,
-            ff_div_12 => Net_23_ff13,
+            ff_div_11 => Net_368_ff11,
+            ff_div_12 => Net_368_ff13,
             ff_div_13 => open,
             ff_div_5 => \UART_1:Net_847_ff1\,
             ff_div_6 => \I2C_1:clock_wire_ff0\,
-            ff_div_18 => Net_23_ff12,
+            ff_div_18 => Net_368_ff12,
             periclk_App => periclk_App);
 
     CPUSS:CPUSS
@@ -1682,7 +1682,7 @@ BEGIN
             exact_width => 0,
             width => 16)
         PORT MAP(
-            clock => Net_23_ff11,
+            clock => Net_368_ff11,
             capture => '0',
             count => '1',
             reload => '0',
@@ -1701,7 +1701,7 @@ BEGIN
             exact_width => 0,
             width => 16)
         PORT MAP(
-            clock => Net_23_ff12,
+            clock => Net_368_ff12,
             capture => '0',
             count => '1',
             reload => '0',
@@ -1729,7 +1729,7 @@ BEGIN
             exact_width => 0,
             width => 16)
         PORT MAP(
-            clock => Net_23_ff13,
+            clock => Net_368_ff13,
             capture => '0',
             count => '1',
             reload => '0',

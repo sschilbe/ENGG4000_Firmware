@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file CY_BLE.c
-* \version 2.0
+* \version 2.20
 * 
 * \brief
 *  This file contains the source code of initialization of the config structure
@@ -8,7 +8,7 @@
 * 
 ********************************************************************************
 * \copyright
-* Copyright 2017-2018, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2017-2019, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -16,16 +16,17 @@
 
 #include "BLE_config.h"
 
-#if CY_BLE_MODE_PROFILE
+#if (CY_BLE_HOST_CONTR_CORE)    
 #include "flash/cy_flash.h"
 #include "ble/cy_ble_event_handler.h"
+#include "cyfitter_sysint_cfg.h"
 
-    
+#if (CY_BLE_MODE_PROFILE)
 /***************************************
 * Global Variables
 ***************************************/
 /* Initializes the cy_stc_ble_gapp_disc_mode_info_t cy_ble_discoveryModeInfo  structure */
-#if(CY_BLE_GAP_ROLE_PERIPHERAL || CY_BLE_GAP_ROLE_BROADCASTER)
+#if (CY_BLE_GAP_ROLE_PERIPHERAL || CY_BLE_GAP_ROLE_BROADCASTER)
 static cy_stc_ble_gapp_adv_params_t cy_ble_gappAdvConfig[0x01u] = {
 
     /* Peripheral configuration 0 */
@@ -61,12 +62,12 @@ cy_stc_ble_gapp_disc_data_t cy_ble_discoveryData[0x01u] = {
 
     /* Peripheral configuration 0 */
     {
-        { 0x02u, 0x01u, 0x06u, 0x09u, 0x09u, 0x57u, 0x65u,
-        0x61u, 0x72u, 0x61u, 0x62u, 0x6Cu, 0x65u, 0x00u,
-        0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u,
+        { 0x02u, 0x01u, 0x06u, 0x11u, 0x09u, 0x55u, 0x4Eu,
+        0x42u, 0x20u, 0x46u, 0x4Du, 0x47u, 0x20u, 0x57u,
+        0x65u, 0x61u, 0x72u, 0x61u, 0x62u, 0x6Cu, 0x65u,
         0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u,
         0x00u, 0x00u, 0x00u }, /* uint8_t advertising_data[CY_BLE_MAX_ADV_DATA_LEN] */ 
-        0x0Du, /* uint8_t adv_data_length */ 
+        0x15u, /* uint8_t adv_data_length */ 
     },
 };
 
@@ -108,7 +109,7 @@ cy_stc_ble_gapp_disc_mode_info_t cy_ble_discoveryModeInfo[0x01u] = {
 #endif /* CY_BLE_GAP_ROLE_PERIPHERAL || CY_BLE_GAP_ROLE_BROADCASTER */
 
 /* Initializes the cy_stc_ble_gapc_disc_info_t  cy_ble_discoveryInfo  structure */
-#if(CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_OBSERVER)
+#if (CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_OBSERVER)
 
 #endif /* CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_OBSERVER */
 
@@ -244,7 +245,7 @@ cy_stc_ble_gapp_disc_mode_info_t cy_ble_discoveryModeInfo[0x01u] = {
 
 #endif  /* (CY_BLE_MODE_PROFILE) && (CY_BLE_BONDING_REQUIREMENT == CY_BLE_BONDING_YES) */
 
-#if(CY_BLE_GATT_ROLE_SERVER)
+#if (CY_BLE_GATT_ROLE_SERVER)
 static const cy_stc_ble_gatts_t cy_ble_gatts =
 {
     0x000Cu,    /* Handle of the GATT service */
@@ -260,9 +261,10 @@ static const cy_stc_ble_gaps_t cy_ble_gaps =
     0x0009u,    /* Handle of the Central Address Resolution characteristic */
     0x000Bu,    /* Handle of the Resolvable Private Address Only characteristic */
 };
-static uint8_t cy_ble_attValues[0x5Eu] = {
+static uint8_t cy_ble_attValues[0x66u] = {
     /* Device Name */
-    (uint8_t)'W', (uint8_t)'e', (uint8_t)'a', (uint8_t)'r', (uint8_t)'a', (uint8_t)'b', (uint8_t)'l', (uint8_t)'e', 
+    (uint8_t)'U', (uint8_t)'N', (uint8_t)'B', (uint8_t)' ', (uint8_t)'F', (uint8_t)'M', (uint8_t)'G', (uint8_t)' ',
+(uint8_t)'W', (uint8_t)'e', (uint8_t)'a', (uint8_t)'r', (uint8_t)'a', (uint8_t)'b', (uint8_t)'l', (uint8_t)'e', 
 
     /* Appearance */
     0x00u, 0x00u, 
@@ -317,32 +319,32 @@ static const uint8_t cy_ble_attUuid128[][16u] = {
 };
 
 static cy_stc_ble_gatts_att_gen_val_len_t cy_ble_attValuesLen[0x14u] = {
-    { 0x0008u, (void *)&cy_ble_attValues[0] }, /* Device Name */
-    { 0x0002u, (void *)&cy_ble_attValues[8] }, /* Appearance */
-    { 0x0008u, (void *)&cy_ble_attValues[10] }, /* Peripheral Preferred Connection Parameters */
-    { 0x0001u, (void *)&cy_ble_attValues[18] }, /* Central Address Resolution */
-    { 0x0001u, (void *)&cy_ble_attValues[19] }, /* Resolvable Private Address Only */
-    { 0x0004u, (void *)&cy_ble_attValues[20] }, /* Service Changed */
+    { 0x0010u, (void *)&cy_ble_attValues[0] }, /* Device Name */
+    { 0x0002u, (void *)&cy_ble_attValues[16] }, /* Appearance */
+    { 0x0008u, (void *)&cy_ble_attValues[18] }, /* Peripheral Preferred Connection Parameters */
+    { 0x0001u, (void *)&cy_ble_attValues[26] }, /* Central Address Resolution */
+    { 0x0001u, (void *)&cy_ble_attValues[27] }, /* Resolvable Private Address Only */
+    { 0x0004u, (void *)&cy_ble_attValues[28] }, /* Service Changed */
     { 0x0002u, (void *)&cy_ble_attValuesCCCD[0] }, /* Client Characteristic Configuration */
-    { 0x0001u, (void *)&cy_ble_attValues[24] }, /* Battery Level */
-    { 0x0007u, (void *)&cy_ble_attValues[25] }, /* Characteristic Presentation Format */
+    { 0x0001u, (void *)&cy_ble_attValues[32] }, /* Battery Level */
+    { 0x0007u, (void *)&cy_ble_attValues[33] }, /* Characteristic Presentation Format */
     { 0x0002u, (void *)&cy_ble_attValuesCCCD[2] }, /* Client Characteristic Configuration */
     { 0x0010u, (void *)&cy_ble_attUuid128[0] }, /* IMU UUID */
     { 0x0010u, (void *)&cy_ble_attUuid128[1] }, /* Acceleration/Gyroscope UUID */
-    { 0x000Cu, (void *)&cy_ble_attValues[32] }, /* Acceleration/Gyroscope */
-    { 0x0012u, (void *)&cy_ble_attValues[44] }, /* Characteristic User Description */
+    { 0x000Cu, (void *)&cy_ble_attValues[40] }, /* Acceleration/Gyroscope */
+    { 0x0012u, (void *)&cy_ble_attValues[52] }, /* Characteristic User Description */
     { 0x0002u, (void *)&cy_ble_attValuesCCCD[4] }, /* Client Characteristic Configuration */
     { 0x0010u, (void *)&cy_ble_attUuid128[2] }, /* FSR UUID */
     { 0x0010u, (void *)&cy_ble_attUuid128[3] }, /* Force UUID */
-    { 0x0010u, (void *)&cy_ble_attValues[62] }, /* Force */
+    { 0x0010u, (void *)&cy_ble_attValues[70] }, /* Force */
     { 0x0002u, (void *)&cy_ble_attValuesCCCD[6] }, /* Client Characteristic Configuration */
-    { 0x0010u, (void *)&cy_ble_attValues[78] }, /* Characteristic User Description */
+    { 0x0010u, (void *)&cy_ble_attValues[86] }, /* Characteristic User Description */
 };
 
 static const cy_stc_ble_gatts_db_t cy_ble_gattDB[0x1Eu] = {
     { 0x0001u, 0x2800u /* Primary service                     */, 0x00000001u /*       */, 0x000Bu, {{0x1800u, NULL}}                           },
     { 0x0002u, 0x2803u /* Characteristic                      */, 0x00020001u /* rd    */, 0x0003u, {{0x2A00u, NULL}}                           },
-    { 0x0003u, 0x2A00u /* Device Name                         */, 0x01020001u /* rd    */, 0x0003u, {{0x0008u, (void *)&cy_ble_attValuesLen[0]}} },
+    { 0x0003u, 0x2A00u /* Device Name                         */, 0x01020001u /* rd    */, 0x0003u, {{0x0010u, (void *)&cy_ble_attValuesLen[0]}} },
     { 0x0004u, 0x2803u /* Characteristic                      */, 0x00020001u /* rd    */, 0x0005u, {{0x2A01u, NULL}}                           },
     { 0x0005u, 0x2A01u /* Appearance                          */, 0x01020001u /* rd    */, 0x0005u, {{0x0002u, (void *)&cy_ble_attValuesLen[1]}} },
     { 0x0006u, 0x2803u /* Characteristic                      */, 0x00020001u /* rd    */, 0x0007u, {{0x2A04u, NULL}}                           },
@@ -390,8 +392,6 @@ static const cy_stc_ble_gatts_db_t cy_ble_gattDB[0x1Eu] = {
 
 #endif /* CY_BLE_MODE_PROFILE */
 
-#if(CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_PERIPHERAL)
-
 /** Initialize BLE configuration parameters structure */
 static const cy_stc_ble_params_t cy_ble_params =
 {
@@ -405,7 +405,6 @@ static const cy_stc_ble_params_t cy_ble_params =
     
         .gattDbIndexCount                   = 0x001Eu,
 };
-#endif  /* (CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_PERIPHERAL) */
 
 cy_stc_ble_gap_bd_addr_t cy_ble_deviceAddress = {{0x00u, 0x00u, 0x00u, 0x50u, 0xA0u, 0x00u}, 0x00u };
 
@@ -413,13 +412,15 @@ cy_stc_ble_gap_bd_addr_t cy_ble_deviceAddress = {{0x00u, 0x00u, 0x00u, 0x50u, 0x
 * \addtogroup group_globals
 * @{
 */
+#endif /* CY_BLE_MODE_PROFILE */
 
 /** The configuration structure for BLE */
 cy_stc_ble_config_t cy_ble_config =
 {
+#if (CY_BLE_MODE_PROFILE)
     /* Initialize the GAPP structures */
     /* Initialize the cy_stc_ble_gapp_disc_mode_info_t cy_ble_discoveryModeInfo structure */
-    #if(CY_BLE_GAP_ROLE_PERIPHERAL || CY_BLE_GAP_ROLE_BROADCASTER)
+    #if (CY_BLE_GAP_ROLE_PERIPHERAL || CY_BLE_GAP_ROLE_BROADCASTER)
         .discoveryModeInfo = cy_ble_discoveryModeInfo,
         .gappAdvParams = cy_ble_gappAdvConfig,
     #else
@@ -427,7 +428,7 @@ cy_stc_ble_config_t cy_ble_config =
     #endif /* CY_BLE_GAP_ROLE_PERIPHERAL || CY_BLE_GAP_ROLE_BROADCASTER */
 
     /* Initialize the cy_stc_ble_gapc_disc_info_t  cy_ble_discoveryInfo  structure */
-    #if(CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_OBSERVER)
+    #if (CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_OBSERVER)
         .discoveryInfo = cy_ble_discoveryInfo,
         .gapcScanParams = cy_ble_gapcScanConfig,
     #else
@@ -435,13 +436,13 @@ cy_stc_ble_config_t cy_ble_config =
     #endif /* CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_OBSERVER */
 
     /* Initialize the GATT structures */
-    #if((CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_PERIPHERAL) && (CY_BLE_BONDING_REQUIREMENT == CY_BLE_BONDING_YES))
+    #if ((CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_PERIPHERAL) && (CY_BLE_BONDING_REQUIREMENT == CY_BLE_BONDING_YES))
         .flashStorage = &cy_ble_flashStorage,
     #else
         .flashStorage = NULL,
     #endif /* CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_PERIPHERAL) && (CY_BLE_BONDING_REQUIREMENT == CY_BLE_BONDING_YES */
 
-    #if(CY_BLE_GATT_ROLE_SERVER)
+    #if (CY_BLE_GATT_ROLE_SERVER)
         .gatts            = &cy_ble_gatts,
         .gaps             = &cy_ble_gaps,
         .attValuesCCCD    = cy_ble_attValuesCCCD,
@@ -452,28 +453,30 @@ cy_stc_ble_config_t cy_ble_config =
         .gattDB           = NULL,
     #endif /* CY_BLE_GATT_ROLE_SERVER */
 
-    #if(CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_PERIPHERAL)
+    #if (CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_PERIPHERAL)
         /* Initialize the device security structure */
         .authInfo = cy_ble_authInfo,
     #else
         .authInfo = NULL,
     #endif /* (CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_PERIPHERAL */
 
-    #if(CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_PERIPHERAL)
-        /* Initialize the BLE configuration parameters structure */
-        .params   = &cy_ble_params,
-    #else
-        .params = NULL,
-    #endif /* (CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_PERIPHERAL */
+    /* Initialize the BLE configuration parameters structure */
+    .params   = &cy_ble_params,
 
     /* An application layer event callback function to receive service events from the BLE Component. */
     .callbackFunc   = NULL,
-
+    
     .deviceAddress  = &cy_ble_deviceAddress,
+#endif /* CY_BLE_MODE_PROFILE */
+
+#if (CY_BLE_CONFIG_STACK_CONTR_CORE)
+    /* The BLESS interrupt configuration */
+    .blessIsrConfig = &BLE_1_bless_isr_cfg,
+#endif /* CY_BLE_CONFIG_STACK_CONTR_CORE */
 };
 
-/** @} group_globals */
+#endif /* CY_BLE_HOST_CONTR_CORE */ 
 
-#endif /* CY_BLE_MODE_PROFILE */
+/** @} group_globals */
 
 /* [] END OF FILE */

@@ -2,7 +2,7 @@
 --	Conversion of Wearable_Firmware.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Tue Jan 14 17:08:35 2020
+--	Thu Jan 23 16:26:40 2020
 --
 
 USE cypress.cypress.all;
@@ -59,7 +59,7 @@ SIGNAL Net_84 : bit;
 SIGNAL tmpFB_0__RED_net_0 : bit;
 SIGNAL tmpIO_0__RED_net_0 : bit;
 TERMINAL tmpSIOVREF__RED_net_0 : bit;
-SIGNAL Net_23 : bit;
+SIGNAL Net_368 : bit;
 SIGNAL \PWM_GREEN_BLINK:swap\ : bit;
 SIGNAL \PWM_GREEN_BLINK:count\ : bit;
 SIGNAL \PWM_GREEN_BLINK:reload\ : bit;
@@ -683,7 +683,7 @@ RED:cy_mxs40_gpio_v1_0
 	GENERIC MAP(cy_registers=>"",
 		width=>16,
 		exact_width=>'0')
-	PORT MAP(clock=>Net_23,
+	PORT MAP(clock=>Net_368,
 		capture=>zero,
 		count=>one,
 		reload=>zero,
@@ -699,7 +699,7 @@ RED:cy_mxs40_gpio_v1_0
 	GENERIC MAP(cy_registers=>"",
 		width=>16,
 		exact_width=>'0')
-	PORT MAP(clock=>Net_23,
+	PORT MAP(clock=>Net_368,
 		capture=>zero,
 		count=>one,
 		reload=>zero,
@@ -719,7 +719,7 @@ Clock_1:cy_clock_v1_0
 		period=>"1000000000000",
 		is_direct=>'0',
 		is_digital=>'0')
-	PORT MAP(clock_out=>Net_23,
+	PORT MAP(clock_out=>Net_368,
 		dig_domain_out=>open);
 isrTimer:cy_mxs40_isr_v1_0
 	GENERIC MAP(cy_registers=>"",
@@ -730,7 +730,7 @@ isrTimer:cy_mxs40_isr_v1_0
 	GENERIC MAP(cy_registers=>"",
 		width=>16,
 		exact_width=>'0')
-	PORT MAP(clock=>Net_23,
+	PORT MAP(clock=>Net_368,
 		capture=>zero,
 		count=>one,
 		reload=>zero,

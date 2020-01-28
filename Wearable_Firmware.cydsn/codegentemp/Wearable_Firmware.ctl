@@ -1,6 +1,6 @@
 -- ======================================================================
 -- Wearable_Firmware.ctl generated from Wearable_Firmware
--- 01/14/2020 at 17:08
+-- 01/23/2020 at 16:26
 -- This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 -- ======================================================================
 

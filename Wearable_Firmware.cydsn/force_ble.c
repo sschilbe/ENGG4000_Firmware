@@ -63,11 +63,7 @@ void forceSendNotification(void)
     {
         getForceValues( currentForceData );
         printf("Current Force Data: %d\r\n", currentForceData[0]);
-        
-        //for( uint8 i = 0; i < 8; i++ ) {
-        //    
-        //}
-        
+
         cy_stc_ble_gatt_handle_value_pair_t force_notification = {
             .value.val = currentForceData,
             .value.len = FORCE_NOTIFICATION_LEN,

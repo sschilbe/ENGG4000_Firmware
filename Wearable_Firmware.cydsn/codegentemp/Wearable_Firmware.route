@@ -19,24 +19,6 @@ net Net_169
 	switch ":TCPWMcontainer:TCPWM[1].interrupt==>:intc_0:interrupt91.interrupt"
 	term   ":intc_0:interrupt91.interrupt"
 end Net_169
-net Net_23_ff11
-	term   ":Clockcontainer:Clock[0].ff_div_11"
-	switch ":Clockcontainer:Clock[0].ff_div_11==>:Clockcontainer:ff_permute.ff_div_11"
-	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_19==>:TCPWMcontainer:TCPWM[0].clock"
-	term   ":TCPWMcontainer:TCPWM[0].clock"
-end Net_23_ff11
-net Net_23_ff12
-	term   ":Clockcontainer:Clock[0].ff_div_18"
-	switch ":Clockcontainer:Clock[0].ff_div_18==>:Clockcontainer:ff_permute.ff_div_18"
-	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_26==>:TCPWMcontainer:TCPWM[7].clock"
-	term   ":TCPWMcontainer:TCPWM[7].clock"
-end Net_23_ff12
-net Net_23_ff13
-	term   ":Clockcontainer:Clock[0].ff_div_12"
-	switch ":Clockcontainer:Clock[0].ff_div_12==>:Clockcontainer:ff_permute.ff_div_12"
-	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_20==>:TCPWMcontainer:TCPWM[1].clock"
-	term   ":TCPWMcontainer:TCPWM[1].clock"
-end Net_23_ff13
 net Net_364
 	term   ":ioport6:pin4.fb"
 	switch ":ioport6:pin4.fb==>:ioport6:smartio_mux_out4.direct_in"
@@ -53,6 +35,24 @@ net Net_365
 	switch ":SCB[6]i2c_sda_input_permute.SCB[6]i2c_sda==>:SCBcontainer:SCB[6].i2c_sda"
 	term   ":SCBcontainer:SCB[6].i2c_sda"
 end Net_365
+net Net_368_ff11
+	term   ":Clockcontainer:Clock[0].ff_div_11"
+	switch ":Clockcontainer:Clock[0].ff_div_11==>:Clockcontainer:ff_permute.ff_div_11"
+	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_19==>:TCPWMcontainer:TCPWM[0].clock"
+	term   ":TCPWMcontainer:TCPWM[0].clock"
+end Net_368_ff11
+net Net_368_ff12
+	term   ":Clockcontainer:Clock[0].ff_div_18"
+	switch ":Clockcontainer:Clock[0].ff_div_18==>:Clockcontainer:ff_permute.ff_div_18"
+	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_26==>:TCPWMcontainer:TCPWM[7].clock"
+	term   ":TCPWMcontainer:TCPWM[7].clock"
+end Net_368_ff12
+net Net_368_ff13
+	term   ":Clockcontainer:Clock[0].ff_div_12"
+	switch ":Clockcontainer:Clock[0].ff_div_12==>:Clockcontainer:ff_permute.ff_div_12"
+	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_20==>:TCPWMcontainer:TCPWM[1].clock"
+	term   ":TCPWMcontainer:TCPWM[1].clock"
+end Net_368_ff13
 net Net_84
 	term   ":TCPWMcontainer:TCPWM[7].line"
 	switch ":TCPWMcontainer:TCPWM[7].line==>:ioport9:hsiomOut4.fixedIn4_ACT_0"

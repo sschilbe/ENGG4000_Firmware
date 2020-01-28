@@ -1,13 +1,13 @@
 /***************************************************************************//**
 * \file     ADC_INIT.c
-* \version  2.10
+* \version  3.10
 *
 * \brief
 * Provides the initialization data structure for the ADC Component.
 *
 ********************************************************************************
 * \copyright
-* (c) 2017, Cypress Semiconductor Corporation. All rights reserved.
+* (c) 2017-2018, Cypress Semiconductor Corporation. All rights reserved.
 * This software, including source code, documentation and related
 * materials ("Software"), is owned by Cypress Semiconductor
 * Corporation ("Cypress") and is protected by and subject to worldwide
