@@ -1,6 +1,0 @@
-C:\Projects\ENGG4000\software\firmware\ENGG4000_Firmware\Wearable_Firmware.cydsn\Wearable_Firmware.cyprj|b8f6a1ad-5d04-4d3f-b3bc-735a8dba4785
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|73479139-6982-423b-b505-6b62da571d28
-C:\Users\seths\OneDrive\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|ec59ca6b-e8a9-4bd0-9247-ad0e481fbe11
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|e225c1da-72cb-4c43-bed2-a3f8f710a99d
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|94873828-dd13-4966-acc3-088f107f2b0b
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|53c5bdb4-2a4c-4a09-a29f-63a5f30471ac
