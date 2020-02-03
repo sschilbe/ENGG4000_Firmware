@@ -16,7 +16,6 @@ INCLUDES
 #include "common_ble.h"
 #include "connection_ble.h"
 #include "force_ble.h"
-#include "imu_ble.h"
 #include "project.h"
 #include <stdio.h>
 
@@ -46,7 +45,6 @@ PROCEDURES
 void sendNotifications(void)
 {
     /* Tell each service to send notification */
-    imuSendNotification();
     forceSendNotification();
 }
 
@@ -66,7 +64,6 @@ void BleInit(void)
         Cy_BLE_ProcessEvents();
     }
     
-    bleImuInit();
     bleForceInit();
 }
 
@@ -81,7 +78,6 @@ void BleCallback(uint32_t event, void *eventParam)
         /* This event is received when the BLE stack is Started */
         case CY_BLE_EVT_STACK_ON:
         case CY_BLE_EVT_GAP_DEVICE_DISCONNECTED:
-            bleImuCallback( event, eventParam );
             bleForceCallback( event, eventParam );
             
             PWM_RED_BLINK_Start();
@@ -107,10 +103,7 @@ void BleCallback(uint32_t event, void *eventParam)
         case CY_BLE_EVT_GATTS_WRITE_REQ:
             /* Forward the write to the corresponding service */
             attribute_handle = ((cy_stc_ble_gatts_write_cmd_req_param_t *)eventParam)->handleValPair.attrHandle;
-            if( IMU_FIRST_HANDLE <= attribute_handle && IMU_LAST_HANDLE >= attribute_handle )
-            {
-                bleImuCallback( event, eventParam );
-            } else if( FSR_FIRST_HANDLE <= attribute_handle && FSR_LAST_HANDLE >= attribute_handle )
+            if( FSR_IMU_FIRST_HANDLE <= attribute_handle && FSR_IMU_LAST_HANDLE >= attribute_handle )
             {
                 bleForceCallback( event, eventParam );
             } else

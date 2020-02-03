@@ -22,7 +22,9 @@ INCLUDES
 /*------------------------------------------------------------
 LITERAL CONSTANTS
 ------------------------------------------------------------*/
-#define FORCE_NOTIFICATION_LEN  (16u)
+#define FORCE_DATA_LEN      (16u)
+#define IMU_DATA_LEN        (12u)
+#define NOTIFICATION_LEN    ( FORCE_DATA_LEN + IMU_DATA_LEN )
 
 /*------------------------------------------------------------
 MACROS
@@ -40,8 +42,14 @@ MEMORY CONSTANTS
 VARIABLES
 ------------------------------------------------------------*/
 /* Force data is in a uint8_t array but values are actually uint16_t's */
-uint16_t currentForceData[FORCE_NOTIFICATION_LEN/2] = {0};
+uint16_t currentNotificationData[NOTIFICATION_LEN/2] = {0};
 bool forceNotificationsEnabled = false;
+
+cy_stc_ble_gatt_handle_value_pair_t force_notification = {
+    .value.val = currentNotificationData,
+    .value.len = NOTIFICATION_LEN,
+    .attrHandle = FSR_IMU_DATA_CHAR_HANDLE
+};
 
 /*------------------------------------------------------------
 PROCEDURES
@@ -51,29 +59,22 @@ void bleForceInit(void)
     /* No initialization required currently */
 }
 
-void updateForceData( uint8_t newData[] )
-{
-    memcpy( currentForceData, newData, sizeof( uint8_t ) * FORCE_NOTIFICATION_LEN );   
-}
-
 void forceSendNotification(void)
 {
     cy_stc_ble_conn_handle_t connHandle = getConnection();
     if( forceNotificationsEnabled )
     {
-        getForceValues( currentForceData );
-        printf("Current Force Data: %d\r\n", currentForceData[0]);
-
-        cy_stc_ble_gatt_handle_value_pair_t force_notification = {
-            .value.val = currentForceData,
-            .value.len = FORCE_NOTIFICATION_LEN,
-            .attrHandle = FSR_FORCE_CHAR_HANDLE
-        };
-        
-        cy_en_ble_api_result_t result = Cy_BLE_GATTS_SendNotification( &connHandle, &force_notification );
-        if( CY_BLE_SUCCESS != result )
+        getForceValues( currentNotificationData );
+        if(Cy_BLE_GATT_GetBusyStatus(connHandle.attId) == CY_BLE_STACK_STATE_FREE)
         {
-           printf("Error sending force characteristic: %d\r\n", result);
+            cy_en_ble_api_result_t result = Cy_BLE_GATTS_SendNotification( &connHandle, &force_notification );           
+            if( CY_BLE_SUCCESS != result )
+            {
+               printf("Error sending characteristic notification: %d\r\n", result);
+            }
+        } else
+        {
+            printf("Stack state is not free");
         }
     }
 }
@@ -93,11 +94,11 @@ void bleForceCallback(uint32_t event, void *eventParam)
         case CY_BLE_EVT_GATTS_WRITE_REQ:
             // Check if the write request is for the Force CCCD
             /* Update GATT DB with latest CCCD value */
-            if( FSR_FORCE_CONFIG_HANDLE == writeReqParameter->handleValPair.attrHandle )
+            if( FSR_IMU_DATA_CONFIG_HANDLE == writeReqParameter->handleValPair.attrHandle )
             {
                 if( CY_BLE_GATT_ERR_NONE != ( result = Cy_BLE_GATTS_WriteAttributeValuePeer( &connHandle, &writeReqParameter->handleValPair ) ) )
                 {
-                    printf("Invalid CCCD write to force, error: %d\r\n", result);
+                    printf("Invalid CCCD write to force_imu, error: %d\r\n", result);
                 } else
                 {
                     forceNotificationsEnabled = ( writeReqParameter->handleValPair.value.val[0] );
@@ -111,7 +112,7 @@ void bleForceCallback(uint32_t event, void *eventParam)
             break;
             
         default:
-            printf("UNHANDLED EVENT FOR FORCE SERVICE, event id: %d\r\n", event);
+            printf("UNHANDLED EVENT FOR FORCE_IMU SERVICE, event id: %d\r\n", event);
             break;
     }
 }
