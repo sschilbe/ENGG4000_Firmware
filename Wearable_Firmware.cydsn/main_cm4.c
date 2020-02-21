@@ -51,6 +51,7 @@ int main(void)
 
     adcInit();
     i2cInit();
+    imuInit();
     BleInit();
     
     for(;;)

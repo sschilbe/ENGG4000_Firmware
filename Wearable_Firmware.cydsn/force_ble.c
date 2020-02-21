@@ -102,6 +102,10 @@ void bleForceCallback(uint32_t event, void *eventParam)
                 } else
                 {
                     forceNotificationsEnabled = ( writeReqParameter->handleValPair.value.val[0] );
+                    if( forceNotificationsEnabled )
+                    {
+                        printf("Enabled Notifications\r\n");
+                    } 
                 }
             }
             
@@ -109,6 +113,7 @@ void bleForceCallback(uint32_t event, void *eventParam)
             break;
         case CY_BLE_EVT_GAP_DEVICE_DISCONNECTED:
             forceNotificationsEnabled = false;
+            printf("Disabled Notifications\r\n");
             break;
             
         default:
