@@ -15,8 +15,8 @@
 /*------------------------------------------------------------
 INCLUDES
 ------------------------------------------------------------*/
+#include "common_i2c.h"
 #include "imu_LSM6DS3.h"
-#include "imu_i2c.h"
 
 /*------------------------------------------------------------
 LITERAL CONSTANTS
@@ -30,7 +30,7 @@ MACROS
 TYPES
 ------------------------------------------------------------*/
 //This struct holds the settings the driver uses to do calculations
-typedef struct sensor_settings_s {
+typedef struct imu_settings_s {
 	//Gyro settings
 	bool                            gyroEnabled;
 	LSM6DS3_ACC_GYRO_FS_G_t         gyroRange;
@@ -57,7 +57,7 @@ typedef struct sensor_settings_s {
 	uint16_t fifoThreshold;         // Can be 0 to 4096
 	LSM6DS3_ACC_GYRO_ODR_FIFO_t     fifoSampleRate;
 	LSM6DS3_ACC_GYRO_FIFO_MODE_t    fifoModeWord;	
-} sensor_settings_t;
+} imu_settings_t;
 
 /*------------------------------------------------------------
 MEMORY CONSTANTS
@@ -66,7 +66,7 @@ MEMORY CONSTANTS
 /*------------------------------------------------------------
 VARIABLES
 ------------------------------------------------------------*/
-sensor_settings_t imu_configuration =
+imu_settings_t imu_configuration =
 {
     //Construct with these default settings
     
@@ -93,7 +93,7 @@ sensor_settings_t imu_configuration =
     .fifoModeWord = LSM6DS3_ACC_GYRO_FIFO_MODE_BYPASS   //Default off
 };
 
-cy_stc_scb_i2c_master_xfer_config_t masterWriteCfg =
+cy_stc_scb_i2c_master_xfer_config_t imuWriteCfg =
 {
     .slaveAddress = LSM6DS3_DEVICE_ADDRESS,
     .buffer       = NULL,
@@ -101,7 +101,7 @@ cy_stc_scb_i2c_master_xfer_config_t masterWriteCfg =
     .xferPending  = false
 };
 
-cy_stc_scb_i2c_master_xfer_config_t masterReadCfg =
+cy_stc_scb_i2c_master_xfer_config_t imuReadCfg =
 {
     .slaveAddress = LSM6DS3_DEVICE_ADDRESS,
     .buffer       = NULL,
@@ -112,7 +112,13 @@ cy_stc_scb_i2c_master_xfer_config_t masterReadCfg =
 /*------------------------------------------------------------
 PROCEDURES
 ------------------------------------------------------------*/
+static bool readRegister(uint8_t* output, uint8_t offset);
+static bool writeRegister(uint8_t offset, uint8_t data);
 static bool readRegisterRegion(uint8_t* output, uint8_t offset, uint8_t length);
+
+//Reads two 8-bit regs, LSByte then MSByte order, and concatenates them.
+//  Acts as a 16-bit read operation
+bool readRegisterInt16(int16_t* output, uint8_t offset);
 
 bool imuInit()
 {
@@ -176,9 +182,9 @@ bool readRegister(uint8_t* output, uint8_t offset)
     I2C_MasterSendStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT);
     
     /* Set to read from buffer at offset */
-    masterWriteCfg.buffer = &offset;
-    masterWriteCfg.bufferSize = numBytes;
-    I2C_MasterWrite(&masterWriteCfg);
+    imuWriteCfg.buffer = &offset;
+    imuWriteCfg.bufferSize = numBytes;
+    I2C_MasterWrite(&imuWriteCfg);
     
     /* Restart */
     I2C_MasterSendReStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_READ_XFER, TIMEOUT);
@@ -207,14 +213,14 @@ bool writeRegister(uint8_t offset, uint8_t data)
     I2C_MasterSendStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT);
     
     /* Set to read from buffer at offset */
-    masterWriteCfg.buffer = &offset;
-    masterWriteCfg.bufferSize = numBytes;
-    I2C_MasterWrite(&masterWriteCfg);
+    imuWriteCfg.buffer = &offset;
+    imuWriteCfg.bufferSize = numBytes;
+    I2C_MasterWrite(&imuWriteCfg);
     
     /* Set to write data to offset */
-    masterWriteCfg.buffer = &data;
-    masterWriteCfg.bufferSize = 1U;
-    I2C_MasterWrite(&masterWriteCfg);
+    imuWriteCfg.buffer = &data;
+    imuWriteCfg.bufferSize = 1U;
+    I2C_MasterWrite(&imuWriteCfg);
         
     I2C_MasterSendStop(TIMEOUT);
     
@@ -226,17 +232,17 @@ static bool readRegisterRegion(uint8_t* output, uint8_t offset, uint8_t length)
     I2C_MasterSendStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT);
     
     /* Set to read from buffer at offset */
-    masterWriteCfg.buffer = &offset;
-    masterWriteCfg.bufferSize = 1U;
-    I2C_MasterWrite(&masterWriteCfg);
+    imuWriteCfg.buffer = &offset;
+    imuWriteCfg.bufferSize = 1U;
+    I2C_MasterWrite(&imuWriteCfg);
     
     /* Restart */
     I2C_MasterSendReStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_READ_XFER, TIMEOUT);
     
     /* Read specified number of bytes */
-    masterReadCfg.buffer = output;
-    masterReadCfg.bufferSize = length;
-    I2C_MasterRead(&masterReadCfg);
+    imuReadCfg.buffer = output;
+    imuReadCfg.bufferSize = length;
+    I2C_MasterRead(&imuReadCfg);
     
     I2C_MasterSendStop(TIMEOUT); 
 

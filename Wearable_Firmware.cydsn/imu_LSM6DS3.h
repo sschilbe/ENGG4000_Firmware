@@ -1,22 +1,26 @@
-/* ========================================
- *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
- * ========================================
+/**
+*
+* @file
+* imu_LSM6DS3.h
+*
+* @brief
+* Interface for I2C communication with IMU
+*
+* Author: Schilbe, Seth
+* Date: 2019 - 02 - 22 
 */
+
 #ifndef IMU_LSM6DS3_H
 #define IMU_LSM6DS3_H
 
+/*------------------------------------------------------------
+INCLUDES
+------------------------------------------------------------*/
 #include "project.h"
-    
-//Returns the raw bits from the sensor cast as 16-bit signed integers
 
-// Return values 
+/*------------------------------------------------------------
+TYPES
+------------------------------------------------------------*/
 typedef enum
 {
 	IMU_SUCCESS,
@@ -28,19 +32,20 @@ typedef enum
 	//...
 } imu_status_t;
 
+/*------------------------------------------------------------
+MEMORY CONSTANTS
+------------------------------------------------------------*/
+
+/*------------------------------------------------------------
+VARIABLES
+------------------------------------------------------------*/
+
+/*------------------------------------------------------------
+PROTOTYPES
+------------------------------------------------------------*/
 bool imuInit();
 
 void imuConfigure();
-
-//readRegister reads one 8-bit register
-bool readRegister(uint8_t* output, uint8_t offset);
-
-//Reads two 8-bit regs, LSByte then MSByte order, and concatenates them.
-//  Acts as a 16-bit read operation
-bool readRegisterInt16(int16_t* output, uint8_t offset);
-
-//Writes an 8-bit byte;
-bool writeRegister(uint8_t , uint8_t);
 
 int16_t readRawAccelX( void );
 int16_t readRawAccelY( void );
@@ -49,6 +54,10 @@ int16_t readRawGyroX( void );
 int16_t readRawGyroY( void );
 int16_t readRawGyroZ( void );
 
+    
+/*------------------------------------------------------------
+LITERAL CONSTANTS
+------------------------------------------------------------*/
 /* Everything below gives us access to all of the information from the IMU, that is probably kind of overkill */
 
 #define LSM6DS3_DEVICE_ADDRESS                  0x6A

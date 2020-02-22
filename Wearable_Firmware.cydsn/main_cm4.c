@@ -18,8 +18,23 @@
 /* ADC interface */
 #include "force_adc.h"
 
-/* IMU interface */
-#include "imu_i2c.h"
+/* I2C interface */
+#include "common_i2c.h"
+
+/* IMU Control */
+#include "imu_LSM6DS3.h"
+
+void TimerInterruptHandler(void)
+{
+    int16_t x_value = 0;
+    
+    /* Clear the interrupt flag */
+    Cy_TCPWM_ClearInterrupt(Timer_HW, Timer_CNT_NUM, CY_TCPWM_INT_ON_TC);
+    sendNotifications();
+    
+    x_value = readRawAccelX();
+    printf("X value is: %d\r\n", x_value);
+}
 
 // Starts the system
 int main(void)
@@ -52,6 +67,7 @@ int main(void)
     adcInit();
     i2cInit();
     imuInit();
+    imuConfigure();
     BleInit();
     
     for(;;)

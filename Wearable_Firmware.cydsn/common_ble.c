@@ -48,14 +48,6 @@ void sendNotifications(void)
     forceSendNotification();
 }
 
-void TimerInterruptHandler(void)
-{
-    /* Clear the interrupt flag */
-    Cy_TCPWM_ClearInterrupt(Timer_HW, Timer_CNT_NUM, CY_TCPWM_INT_ON_TC);
-    
-    sendNotifications();
-}
-
 void BleInit(void)
 {
     Cy_BLE_Start(BleCallback);

@@ -1,28 +1,24 @@
 /**
 *
 * @file
-* imu_i2c.h
+* gas_gauge_BQ27210.h
 *
 * @brief
-* Interface for controlling the I2C peripheral for IMU data
+* Interface for I2C communication with gas gauge
 *
 * Author: Schilbe, Seth
-* Date: 2019 - 01 - 10 
+* Date: 2019 - 02 - 22
 */
 
-#ifndef IMU_I2C_H
-#define IMU_I2C_H
+#ifndef GAS_GAUGE_BQ27210_H
+#define GAS_GAUGE_BQ27210_H
     
 /*------------------------------------------------------------
 INCLUDES
 ------------------------------------------------------------*/
 #include "project.h"
+#include "common_i2c.h"
     
-/*------------------------------------------------------------
-LITERAL CONSTANTS
-------------------------------------------------------------*/
-#define TIMEOUT (1000) //ms
-
 /*------------------------------------------------------------
 MACROS
 ------------------------------------------------------------*/
@@ -42,7 +38,17 @@ VARIABLES
 /*------------------------------------------------------------
 PROTOTYPES
 ------------------------------------------------------------*/
-void i2cInit();
+    
+    
+/*------------------------------------------------------------
+LITERAL CONSTANTS
+------------------------------------------------------------*/
+#define BQ27210_DEVICE_ADDRESS                  0xAA
 
+/*
+#define WRITE_ADDRESS_OFFSET                    0x00
+#define READ_ADDRESS_OFFSET                     0x01
+*/
+    
 #endif
 /* [] END OF FILE */

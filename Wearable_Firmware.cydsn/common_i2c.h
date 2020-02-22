@@ -1,26 +1,27 @@
 /**
 *
 * @file
-* common_ble.h
+* common_i2c.h
 *
 * @brief
-* Interface for controlling common BLE functionality
+* Interface for common I2C communication functions
 *
 * Author: Schilbe, Seth
-* Date: 2019 - 12 - 01 
+* Date: 2019 - 01 - 10 
 */
 
-#ifndef COMMON_BLE_H
-#define COMMON_BLE_H
-
+#ifndef COMMON_I2C_H
+#define COMMON_I2C_H
+    
 /*------------------------------------------------------------
 INCLUDES
 ------------------------------------------------------------*/
-#include <project.h>
-
+#include "project.h"
+    
 /*------------------------------------------------------------
 LITERAL CONSTANTS
 ------------------------------------------------------------*/
+#define TIMEOUT (1000) //ms
 
 /*------------------------------------------------------------
 MACROS
@@ -41,9 +42,7 @@ VARIABLES
 /*------------------------------------------------------------
 PROTOTYPES
 ------------------------------------------------------------*/
-void BleInit(void);
-void BleCallback(uint32_t event, void *eventParam);
+void i2cInit();
 
-void sendNotifications(void);
-#endif /* COMMON_BLE_H */
+#endif
 /* [] END OF FILE */
