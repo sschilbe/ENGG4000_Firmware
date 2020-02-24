@@ -60,7 +60,7 @@ LITERAL CONSTANTS
 ------------------------------------------------------------*/
 /* Everything below gives us access to all of the information from the IMU, that is probably kind of overkill */
 
-#define LSM6DS3_DEVICE_ADDRESS                  0x6A
+#define LSM6DS3_DEVICE_ADDRESS                  0x6B
 
 /************** Device Register  *******************/
 #define LSM6DS3_ACC_GYRO_TEST_PAGE  			0X00

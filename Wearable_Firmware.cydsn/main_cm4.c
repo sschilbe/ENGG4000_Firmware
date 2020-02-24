@@ -24,6 +24,9 @@
 /* IMU Control */
 #include "imu_LSM6DS3.h"
 
+/* Gas Gauge Control */
+#include "gas_gauge_BQ27210.h"
+
 void TimerInterruptHandler(void)
 {
     int16_t x_value = 0;
@@ -32,8 +35,8 @@ void TimerInterruptHandler(void)
     Cy_TCPWM_ClearInterrupt(Timer_HW, Timer_CNT_NUM, CY_TCPWM_INT_ON_TC);
     sendNotifications();
     
-    x_value = readRawAccelX();
-    printf("X value is: %d\r\n", x_value);
+    //x_value = readRawAccelX();
+    //printf("X value is: %d\r\n", x_value);
 }
 
 // Starts the system
@@ -43,6 +46,8 @@ int main(void)
      * address and assign priority.
      */
     Cy_SysInt_Init(&isrTimer_cfg, TimerInterruptHandler);
+    Cy_SysInt_Init(&I2C_SCB_IRQ_cfg, &I2C_Interrupt);
+    
     NVIC_EnableIRQ(isrTimer_cfg.intrSrc); /* Enable the core interrupt */
     __enable_irq(); /* Enable global interrupts. */
     
@@ -64,11 +69,22 @@ int main(void)
      */
     Cy_TCPWM_TriggerStart(Timer_HW, Timer_CNT_MASK); 
 
+    
     adcInit();
+    
     i2cInit();
     imuInit();
+    gasGaugeInit();
+    
     imuConfigure();
+    gasGaugeConfigure();
+    
     BleInit();
+    
+    cy_en_scb_i2c_status_t status;
+    if( ( status = I2C_MasterSendStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT) ) != CY_SCB_I2C_SUCCESS) {
+        printf("Error starting communication: %x\r\n", status);
+    }
     
     for(;;)
     {

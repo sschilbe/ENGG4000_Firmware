@@ -1,0 +1,109 @@
+net CPUSS_swj_swclk_tclk
+	term   ":ioport6:pin7.fb"
+	switch ":ioport6:pin7.fb==>:ioport6:smartio_mux_out7.direct_in"
+	switch ":ioport6:smartio_mux_out7.smartio_mux_out==>:ioport6:hsiomIn7.hsiomIn7"
+	switch ":ioport6:hsiomIn7.fixedOut7_DPSLP_5==>:CPUSS[0]swj_swclk_tclk_input_permute.ioport6_fixedOut7_DPSLP_5"
+	switch ":CPUSS[0]swj_swclk_tclk_input_permute.CPUSS[0]swj_swclk_tclk==>:CPUSScontainer:CPUSS[0].swj_swclk_tclk"
+	term   ":CPUSScontainer:CPUSS[0].swj_swclk_tclk"
+end CPUSS_swj_swclk_tclk
+net CPUSS_swj_swdio_tms
+	term   ":ioport6:pin6.fb"
+	switch ":ioport6:pin6.fb==>:ioport6:smartio_mux_out6.direct_in"
+	switch ":ioport6:smartio_mux_out6.smartio_mux_out==>:ioport6:hsiomIn6.hsiomIn6"
+	switch ":ioport6:hsiomIn6.fixedOut6_DPSLP_5==>:CPUSS[0]swj_swdio_tms_input_permute.ioport6_fixedOut6_DPSLP_5"
+	switch ":CPUSS[0]swj_swdio_tms_input_permute.CPUSS[0]swj_swdio_tms==>:CPUSScontainer:CPUSS[0].swj_swdio_tms"
+	term   ":CPUSScontainer:CPUSS[0].swj_swdio_tms"
+end CPUSS_swj_swdio_tms
+net Net_471
+	term   ":TCPWMcontainer:TCPWM[1].line_compl"
+	switch ":TCPWMcontainer:TCPWM[1].line_compl==>:ioport0:hsiomOut3.fixedIn3_ACT_0"
+	switch ":ioport0:hsiomOut3.hsiomOut3==>:ioport0:smartio_mux_in3.direct_out"
+	switch ":ioport0:smartio_mux_in3.smartio_mux_in==>:ioport0:pin3.pin_input"
+	term   ":ioport0:pin3.pin_input"
+end Net_471
+net Net_475
+	term   ":TCPWMcontainer:TCPWM[3].line_compl"
+	switch ":TCPWMcontainer:TCPWM[3].line_compl==>:ioport1:hsiomOut1.fixedIn1_ACT_0"
+	switch ":ioport1:hsiomOut1.hsiomOut1==>:ioport1:smartio_mux_in1.direct_out"
+	switch ":ioport1:smartio_mux_in1.smartio_mux_in==>:ioport1:pin1.pin_input"
+	term   ":ioport1:pin1.pin_input"
+end Net_475
+net Net_49_ff11
+	term   ":Clockcontainer:Clock[0].ff_div_20"
+	switch ":Clockcontainer:Clock[0].ff_div_20==>:Clockcontainer:ff_permute.ff_div_20"
+	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_28==>:TCPWMcontainer:TCPWM[9].clock"
+	term   ":TCPWMcontainer:TCPWM[9].clock"
+end Net_49_ff11
+net Net_49_ff12
+	term   ":Clockcontainer:Clock[0].ff_div_14"
+	switch ":Clockcontainer:Clock[0].ff_div_14==>:Clockcontainer:ff_permute.ff_div_14"
+	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_22==>:TCPWMcontainer:TCPWM[3].clock"
+	term   ":TCPWMcontainer:TCPWM[3].clock"
+end Net_49_ff12
+net Net_49_ff13
+	term   ":Clockcontainer:Clock[0].ff_div_12"
+	switch ":Clockcontainer:Clock[0].ff_div_12==>:Clockcontainer:ff_permute.ff_div_12"
+	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_20==>:TCPWMcontainer:TCPWM[1].clock"
+	term   ":TCPWMcontainer:TCPWM[1].clock"
+end Net_49_ff13
+net Net_612
+	term   ":TCPWMcontainer:TCPWM[9].line_compl"
+	switch ":TCPWMcontainer:TCPWM[9].line_compl==>:ioport11:hsiomOut1.fixedIn1_ACT_1"
+	switch ":ioport11:hsiomOut1.hsiomOut1==>:ioport11:smartio_mux_in1.direct_out"
+	switch ":ioport11:smartio_mux_in1.smartio_mux_in==>:ioport11:pin1.pin_input"
+	term   ":ioport11:pin1.pin_input"
+end Net_612
+net Net_65
+	term   ":ioport6:pin0.fb"
+	switch ":ioport6:pin0.fb==>:ioport6:smartio_mux_out0.direct_in"
+	switch ":ioport6:smartio_mux_out0.smartio_mux_out==>:ioport6:hsiomIn0.hsiomIn0"
+	switch ":ioport6:hsiomIn0.fixedOut0_ACT_7==>:SCB[3]i2c_scl_input_permute.ioport6_fixedOut0_ACT_7"
+	switch ":SCB[3]i2c_scl_input_permute.SCB[3]i2c_scl==>:SCBcontainer:SCB[3].i2c_scl"
+	term   ":SCBcontainer:SCB[3].i2c_scl"
+end Net_65
+net Net_66
+	term   ":ioport6:pin1.fb"
+	switch ":ioport6:pin1.fb==>:ioport6:smartio_mux_out1.direct_in"
+	switch ":ioport6:smartio_mux_out1.smartio_mux_out==>:ioport6:hsiomIn1.hsiomIn1"
+	switch ":ioport6:hsiomIn1.fixedOut1_ACT_7==>:SCB[3]i2c_sda_input_permute.ioport6_fixedOut1_ACT_7"
+	switch ":SCB[3]i2c_sda_input_permute.SCB[3]i2c_sda==>:SCBcontainer:SCB[3].i2c_sda"
+	term   ":SCBcontainer:SCB[3].i2c_sda"
+end Net_66
+net Net_69
+	term   ":ioport9:pin0.fb"
+	switch ":ioport9:pin0.fb==>:ioport9:smartio_mux_out0.direct_in"
+	switch ":ioport9:smartio_mux_out0.smartio_mux_out==>:ioport9:hsiomIn0.hsiomIn0"
+	switch ":ioport9:hsiomIn0.fixedOut0_ACT_7==>:SCB[2]i2c_scl_input_permute.ioport9_fixedOut0_ACT_7"
+	switch ":SCB[2]i2c_scl_input_permute.SCB[2]i2c_scl==>:SCBcontainer:SCB[2].i2c_scl"
+	term   ":SCBcontainer:SCB[2].i2c_scl"
+end Net_69
+net Net_70
+	term   ":ioport9:pin1.fb"
+	switch ":ioport9:pin1.fb==>:ioport9:smartio_mux_out1.direct_in"
+	switch ":ioport9:smartio_mux_out1.smartio_mux_out==>:ioport9:hsiomIn1.hsiomIn1"
+	switch ":ioport9:hsiomIn1.fixedOut1_ACT_7==>:SCB[2]i2c_sda_input_permute.ioport9_fixedOut1_ACT_7"
+	switch ":SCB[2]i2c_sda_input_permute.SCB[2]i2c_sda==>:SCBcontainer:SCB[2].i2c_sda"
+	term   ":SCBcontainer:SCB[2].i2c_sda"
+end Net_70
+net \mI2C:clock_wire_ff1\
+	term   ":Clockcontainer:Clock[0].ff_div_3"
+	switch ":Clockcontainer:Clock[0].ff_div_3==>:Clockcontainer:ff_permute.ff_div_3"
+	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_3==>:SCBcontainer:SCB[3].clock"
+	term   ":SCBcontainer:SCB[3].clock"
+end \mI2C:clock_wire_ff1\
+net \mI2C:intr_wire\
+	term   ":SCBcontainer:SCB[3].interrupt"
+	switch ":SCBcontainer:SCB[3].interrupt==>:intc_0:interrupt44.interrupt"
+	term   ":intc_0:interrupt44.interrupt"
+end \mI2C:intr_wire\
+net \sI2C:clock_wire_ff0\
+	term   ":Clockcontainer:Clock[0].ff_div_2"
+	switch ":Clockcontainer:Clock[0].ff_div_2==>:Clockcontainer:ff_permute.ff_div_2"
+	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_2==>:SCBcontainer:SCB[2].clock"
+	term   ":SCBcontainer:SCB[2].clock"
+end \sI2C:clock_wire_ff0\
+net \sI2C:intr_wire\
+	term   ":SCBcontainer:SCB[2].interrupt"
+	switch ":SCBcontainer:SCB[2].interrupt==>:intc_0:interrupt43.interrupt"
+	term   ":intc_0:interrupt43.interrupt"
+end \sI2C:intr_wire\

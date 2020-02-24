@@ -18,6 +18,8 @@ INCLUDES
 #include "common_i2c.h"
 #include "imu_LSM6DS3.h"
 
+#include <stdio.h>
+
 /*------------------------------------------------------------
 LITERAL CONSTANTS
 ------------------------------------------------------------*/
@@ -177,14 +179,19 @@ void imuConfigure()
 
 bool readRegister(uint8_t* output, uint8_t offset)
 {
+    cy_en_scb_i2c_status_t status;
 	uint8_t numBytes = 1;
 
-    I2C_MasterSendStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT);
+    if( ( status = I2C_MasterSendStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT) ) != CY_SCB_I2C_SUCCESS) {
+        printf("Error starting communication: %x\r\n", status);
+    }
     
     /* Set to read from buffer at offset */
     imuWriteCfg.buffer = &offset;
     imuWriteCfg.bufferSize = numBytes;
-    I2C_MasterWrite(&imuWriteCfg);
+    if(I2C_MasterWrite(&imuWriteCfg) != CY_SCB_I2C_SUCCESS) {
+        printf("Error writing to IMU\r\n");   
+    }
     
     /* Restart */
     I2C_MasterSendReStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_READ_XFER, TIMEOUT);
