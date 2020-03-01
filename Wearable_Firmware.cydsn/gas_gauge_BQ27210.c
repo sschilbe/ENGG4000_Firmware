@@ -36,22 +36,6 @@ MEMORY CONSTANTS
 VARIABLES
 ------------------------------------------------------------*/
 
-cy_stc_scb_i2c_master_xfer_config_t gasGaugeWriteCfg =
-{
-    .slaveAddress = BQ27210_DEVICE_ADDRESS,
-    .buffer       = NULL,
-    .bufferSize   = 0U,
-    .xferPending  = false
-};
-
-cy_stc_scb_i2c_master_xfer_config_t gasGaugeReadCfg =
-{
-    .slaveAddress = BQ27210_DEVICE_ADDRESS,
-    .buffer       = NULL,
-    .bufferSize   = 0U,
-    .xferPending  = false
-};
-
 /*------------------------------------------------------------
 PROCEDURES
 ------------------------------------------------------------*/
@@ -78,24 +62,18 @@ void gasGaugeConfigure()
 bool readRegister(uint8_t* output, uint8_t offset)
 {
     cy_en_scb_i2c_status_t status;
-	uint8_t numBytes = 1;
-
     if( ( status = I2C_MasterSendStart(BQ27210_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT) ) != CY_SCB_I2C_SUCCESS) {
         printf("Error starting communication: %x\r\n", status);
     }
     
     /* Set to read from buffer at offset */
-    gasGaugeWriteCfg.buffer = &offset;
-    gasGaugeWriteCfg.bufferSize = numBytes;
-    if(I2C_MasterWrite(&gasGaugeWriteCfg) != CY_SCB_I2C_SUCCESS) {
-        printf("Error writing to IMU\r\n");   
-    }
-    
+    I2C_MasterWriteByte( offset, TIMEOUT );
+
     /* Restart */
     I2C_MasterSendReStart(BQ27210_DEVICE_ADDRESS, CY_SCB_I2C_READ_XFER, TIMEOUT);
     
     /* Read single byte */
-    I2C_MasterReadByte(CY_SCB_MASTER_INTR_I2C_NACK, output, TIMEOUT); // Read from register
+    I2C_MasterReadByte(CY_SCB_I2C_NAK, output, TIMEOUT); // Read from register
     
     I2C_MasterSendStop(TIMEOUT); 
 
@@ -106,27 +84,21 @@ bool readRegisterInt16(int16_t* output, uint8_t offset )
 {
     uint8_t localBuffer[2];
     readRegisterRegion(localBuffer, offset, 2);
-    *output = (int16_t)localBuffer[0] | (int16_t)(localBuffer[1] << 8);
+    *output = (int16_t)( localBuffer[0] | (localBuffer[1] << 8));
     
     return true;
 }
 
 bool writeRegister(uint8_t offset, uint8_t data)
 {
-    uint8_t numBytes = 1;
-
     I2C_MasterSendStart(BQ27210_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT);
     
     /* Set to read from buffer at offset */
-    gasGaugeWriteCfg.buffer = &offset;
-    gasGaugeWriteCfg.bufferSize = numBytes;
-    I2C_MasterWrite(&gasGaugeWriteCfg);
+    I2C_MasterWriteByte( offset, TIMEOUT );
     
     /* Set to write data to offset */
-    gasGaugeWriteCfg.buffer = &data;
-    gasGaugeWriteCfg.bufferSize = 1U;
-    I2C_MasterWrite(&gasGaugeWriteCfg);
-        
+    I2C_MasterWriteByte( data, TIMEOUT );
+    
     I2C_MasterSendStop(TIMEOUT);
     
     return true;
@@ -137,17 +109,19 @@ static bool readRegisterRegion(uint8_t* output, uint8_t offset, uint8_t length)
     I2C_MasterSendStart(BQ27210_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT);
     
     /* Set to read from buffer at offset */
-    gasGaugeWriteCfg.buffer = &offset;
-    gasGaugeWriteCfg.bufferSize = 1U;
-    I2C_MasterWrite(&gasGaugeWriteCfg);
+    I2C_MasterWriteByte( offset, TIMEOUT );
     
     /* Restart */
     I2C_MasterSendReStart(BQ27210_DEVICE_ADDRESS, CY_SCB_I2C_READ_XFER, TIMEOUT);
     
     /* Read specified number of bytes */
-    gasGaugeReadCfg.buffer = output;
-    gasGaugeReadCfg.bufferSize = length;
-    I2C_MasterRead(&gasGaugeReadCfg);
+    for( uint8_t i = 0; i < length - 1; i++ )
+    {
+        I2C_MasterReadByte(CY_SCB_I2C_ACK, &(output[i]), TIMEOUT);
+    }
+    
+    // Nack the last value to be read
+    I2C_MasterReadByte(CY_SCB_I2C_NAK, &(output[length-1]), TIMEOUT);
     
     I2C_MasterSendStop(TIMEOUT); 
 

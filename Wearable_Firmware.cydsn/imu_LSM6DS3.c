@@ -46,7 +46,7 @@ typedef struct imu_settings_s {
 	bool                            accelEnabled;
 	bool                            accelODROff;
 	LSM6DS3_ACC_GYRO_FS_XL_t        accelRange;
-	LSM6DS3_ACC_GYRO_ODR_G_t        accelSampleRate;
+	LSM6DS3_ACC_GYRO_ODR_XL_t        accelSampleRate;
 	LSM6DS3_ACC_GYRO_BW_XL_t        accelBandWidth;
 	
 	bool                            accelFifoEnabled;
@@ -74,7 +74,7 @@ imu_settings_t imu_configuration =
     
     .gyroEnabled = true,                            //Can be 0 or 1
     .gyroRange = LSM6DS3_ACC_GYRO_FS_G_2000dps,     //Max deg/s.  Can be: 125, 245, 500, 1000, 2000
-    .gyroSampleRate = LSM6DS3_ACC_GYRO_ODR_G_833Hz, //Hz.  Can be: 13, 26, 52, 104, 208, 416, 833,
+    .gyroSampleRate = LSM6DS3_ACC_GYRO_ODR_G_104Hz, //Hz.  Can be: 13, 26, 52, 104, 208, 416, 833,
     .gyroBandWidth = LSM6DS3_ACC_GYRO_BW_XL_400Hz,  //Hz.  Can be: 50, 100, 200, 400;
     .gyroFifoEnabled = true,                        //Set to include gyro in FIFO
     .gyroFifoDecimation = LSM6DS3_ACC_GYRO_DEC_FIFO_XL_NO_DECIMATION,   //set 1 for on /1
@@ -82,33 +82,17 @@ imu_settings_t imu_configuration =
     .accelEnabled = true,       //Can be 0 or 1
     .accelODROff = true,
     .accelRange = LSM6DS3_ACC_GYRO_FS_XL_16g,           //Max G force readable.  Can be: 2, 4, 8, 16
-    .accelSampleRate = LSM6DS3_ACC_GYRO_ODR_G_416Hz,    //Hz.  Can be: 13, 26, 52, 104, 208, 416, 833,
+    .accelSampleRate = LSM6DS3_ACC_GYRO_ODR_XL_104Hz,    //Hz.  Can be: 13, 26, 52, 104, 208, 416, 833,
     .accelBandWidth = LSM6DS3_ACC_GYRO_BW_XL_400Hz,     //Hz.  Can be: 50, 100, 200, 400;
-    .accelFifoEnabled = true,                           //Set to include accelerometer in the FIFO
+    .accelFifoEnabled = false,                           //Set to include accelerometer in the FIFO
     .accelFifoDecimation = LSM6DS3_ACC_GYRO_DEC_FIFO_XL_NO_DECIMATION,  //set 1 for on /1
     
     .tempEnabled = false,   //Can be 0 or 1
     
     //FIFO control data
-    .fifoThreshold = 3000,                              //Can be 0 to 4096 (16 b
+    .fifoThreshold = 3000,                              //Can be 0 to 4096
     .fifoSampleRate = LSM6DS3_ACC_GYRO_ODR_FIFO_10Hz,   //default 10Hz
     .fifoModeWord = LSM6DS3_ACC_GYRO_FIFO_MODE_BYPASS   //Default off
-};
-
-cy_stc_scb_i2c_master_xfer_config_t imuWriteCfg =
-{
-    .slaveAddress = LSM6DS3_DEVICE_ADDRESS,
-    .buffer       = NULL,
-    .bufferSize   = 0U,
-    .xferPending  = false
-};
-
-cy_stc_scb_i2c_master_xfer_config_t imuReadCfg =
-{
-    .slaveAddress = LSM6DS3_DEVICE_ADDRESS,
-    .buffer       = NULL,
-    .bufferSize   = 0U,
-    .xferPending  = false
 };
 
 /*------------------------------------------------------------
@@ -127,7 +111,7 @@ bool imuInit()
     //Check the ID register to determine if the operation was a success.
     uint8_t readCheck;
     readRegister(&readCheck, LSM6DS3_ACC_GYRO_WHO_AM_I_REG);
-    if( readCheck != LSM6DS3_DEVICE_ADDRESS )
+    if( readCheck != 0x69 ) // for whatever reason this returns the value 0x69 instead of the actual address
     {
         return false;
     }
@@ -180,25 +164,29 @@ void imuConfigure()
 bool readRegister(uint8_t* output, uint8_t offset)
 {
     cy_en_scb_i2c_status_t status;
-	uint8_t numBytes = 1;
 
     if( ( status = I2C_MasterSendStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT) ) != CY_SCB_I2C_SUCCESS) {
         printf("Error starting communication: %x\r\n", status);
     }
     
     /* Set to read from buffer at offset */
-    imuWriteCfg.buffer = &offset;
-    imuWriteCfg.bufferSize = numBytes;
-    if(I2C_MasterWrite(&imuWriteCfg) != CY_SCB_I2C_SUCCESS) {
-        printf("Error writing to IMU\r\n");   
+    if( ( status = I2C_MasterWriteByte( offset, TIMEOUT ) ) != CY_SCB_I2C_SUCCESS )
+    {
+        printf("Error writing byte: %x\r\n", status);   
     }
     
     /* Restart */
-    I2C_MasterSendReStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_READ_XFER, TIMEOUT);
+    if( ( status = I2C_MasterSendReStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_READ_XFER, TIMEOUT) ) != CY_SCB_I2C_SUCCESS )
+    {
+        printf("Error sending restart: %x\r\n", status);   
+    }
     
     /* Read single byte */
-    I2C_MasterReadByte(CY_SCB_MASTER_INTR_I2C_NACK, output, TIMEOUT); // Read from register
-    
+    if( ( status = I2C_MasterReadByte(CY_SCB_I2C_NAK, output, TIMEOUT) ) != CY_SCB_I2C_SUCCESS ) // Read from register
+    {
+        printf("Error reading: %x\r\n", status);   
+    }
+        
     I2C_MasterSendStop(TIMEOUT); 
 
     return true;
@@ -208,27 +196,27 @@ bool readRegisterInt16(int16_t* output, uint8_t offset )
 {
     uint8_t localBuffer[2];
     readRegisterRegion(localBuffer, offset, 2);
-    *output = (int16_t)localBuffer[0] | (int16_t)(localBuffer[1] << 8);
+    *output = (int16_t)( localBuffer[0] | (localBuffer[1] << 8));
     
     return true;
 }
 
 bool writeRegister(uint8_t offset, uint8_t data)
 {
-    uint8_t numBytes = 1;
-
-    I2C_MasterSendStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT);
+    cy_en_scb_i2c_status_t status;
+    if( ( status = I2C_MasterSendStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT) ) != CY_SCB_I2C_SUCCESS) {
+        printf("Error starting communication: %x\r\n", status);
+    }
     
     /* Set to read from buffer at offset */
-    imuWriteCfg.buffer = &offset;
-    imuWriteCfg.bufferSize = numBytes;
-    I2C_MasterWrite(&imuWriteCfg);
+    if( ( status = I2C_MasterWriteByte( offset, TIMEOUT ) ) != CY_SCB_I2C_SUCCESS )
+    {
+        printf("Error writing byte: %x\r\n", status);   
+    }
     
     /* Set to write data to offset */
-    imuWriteCfg.buffer = &data;
-    imuWriteCfg.bufferSize = 1U;
-    I2C_MasterWrite(&imuWriteCfg);
-        
+    I2C_MasterWriteByte( data, TIMEOUT );
+    
     I2C_MasterSendStop(TIMEOUT);
     
     return true;
@@ -236,20 +224,28 @@ bool writeRegister(uint8_t offset, uint8_t data)
 
 static bool readRegisterRegion(uint8_t* output, uint8_t offset, uint8_t length)
 {    
-    I2C_MasterSendStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT);
+    cy_en_scb_i2c_status_t status;
+    if( ( status = I2C_MasterSendStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT) ) != CY_SCB_I2C_SUCCESS) {
+        printf("Error starting communication: %x\r\n", status);
+    }
     
     /* Set to read from buffer at offset */
-    imuWriteCfg.buffer = &offset;
-    imuWriteCfg.bufferSize = 1U;
-    I2C_MasterWrite(&imuWriteCfg);
+    if( ( status = I2C_MasterWriteByte( offset, TIMEOUT ) ) != CY_SCB_I2C_SUCCESS )
+    {
+        printf("Error writing byte: %x\r\n", status);   
+    }
     
     /* Restart */
     I2C_MasterSendReStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_READ_XFER, TIMEOUT);
     
     /* Read specified number of bytes */
-    imuReadCfg.buffer = output;
-    imuReadCfg.bufferSize = length;
-    I2C_MasterRead(&imuReadCfg);
+    for( uint8_t i = 0; i < length - 1; i++ )
+    {
+        I2C_MasterReadByte(CY_SCB_I2C_ACK, &(output[i]), TIMEOUT);
+    }
+    
+    // Nack the last value to be read
+    I2C_MasterReadByte(CY_SCB_I2C_NAK, &(output[length-1]), TIMEOUT);
     
     I2C_MasterSendStop(TIMEOUT); 
 

@@ -35,8 +35,8 @@ void TimerInterruptHandler(void)
     Cy_TCPWM_ClearInterrupt(Timer_HW, Timer_CNT_NUM, CY_TCPWM_INT_ON_TC);
     sendNotifications();
     
-    //x_value = readRawAccelX();
-    //printf("X value is: %d\r\n", x_value);
+    x_value = readRawAccelX();
+    printf("X value is: %d\r\n", x_value);
 }
 
 // Starts the system
@@ -45,8 +45,17 @@ int main(void)
     /* Initialize the interrupt vector table with the timer interrupt handler
      * address and assign priority.
      */
-    Cy_SysInt_Init(&isrTimer_cfg, TimerInterruptHandler);
+    Cy_SCB_I2C_Init(I2C_HW, &I2C_config, &I2C_context);
+    Cy_SCB_I2C_SetDataRate(I2C_HW, I2C_DATA_RATE_HZ, I2C_CLK_FREQ_HZ);
     Cy_SysInt_Init(&I2C_SCB_IRQ_cfg, &I2C_Interrupt);
+    
+    Cy_SysInt_Init(&isrTimer_cfg, TimerInterruptHandler);
+    
+    /* Enable interrupt in NVIC. */
+    NVIC_EnableIRQ((IRQn_Type) I2C_SCB_IRQ_cfg.intrSrc);
+    
+    /* Enable I2C master hardware. */
+    Cy_SCB_I2C_Enable(I2C_HW);
     
     NVIC_EnableIRQ(isrTimer_cfg.intrSrc); /* Enable the core interrupt */
     __enable_irq(); /* Enable global interrupts. */
@@ -71,20 +80,18 @@ int main(void)
 
     
     adcInit();
+
+    if( !imuInit() )
+    {
+        printf("Error validating the identity of the IMU");    
+    }
     
-    i2cInit();
-    imuInit();
     gasGaugeInit();
     
     imuConfigure();
     gasGaugeConfigure();
     
     BleInit();
-    
-    cy_en_scb_i2c_status_t status;
-    if( ( status = I2C_MasterSendStart(LSM6DS3_DEVICE_ADDRESS, CY_SCB_I2C_WRITE_XFER , TIMEOUT) ) != CY_SCB_I2C_SUCCESS) {
-        printf("Error starting communication: %x\r\n", status);
-    }
     
     for(;;)
     {
